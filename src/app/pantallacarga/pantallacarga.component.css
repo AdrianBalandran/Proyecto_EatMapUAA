@@ -1,0 +1,19 @@
+/* Ocupa toda la pantalla con un color de fondo */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF4362; /* Color de fondo deseado */
+  }
+  
+  /* Estilo para la imagen centrada */
+  .centered-image img{
+    max-width: 60%; /* Ajusta el tamaño según necesites */
+    height: auto;
+    object-fit: contain;
+    margin-top: 40%;
+    margin-left: 20%;
+  }
+  
