@@ -1,0 +1,196 @@
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/Imagenes/fondo6.gif') no-repeat center/cover;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .header .navbar {
+    background-color: transparent !important;
+    padding: 10px 20px;
+  }
+  
+  .header-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header-title {
+    color: white;
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .header-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .header-input {
+    width: 200px;
+    height: 35px;
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+  
+  .header-button {
+    font-size: 0.9rem;
+    padding: 5px 15px;
+  }
+  
+
+  .tarjetasmuestra{
+
+    display: flex;
+    justify-content: center;
+
+    margin: 100px;
+
+  }
+
+  .card{
+    margin: 30px;
+  }
+
+  .card:hover{
+    scale: 1.1;
+    transition-duration: 1s;
+  }
+
+  .navbar-collapse a{
+    font-style: none;
+    font-size: 13px;
+    margin-left: 6px;
+    color: white;
+  }
+
+  .d-flex{
+    color: white;
+  }
+
+  .navbar-collapse{
+    display: grid;
+    justify-content: end;
+    color: white;
+  }
+
+  /* Estilo Buscador */
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  .search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #f4f2f2;
+    border: none;
+    color: #646464;
+    padding: 0.7rem 1rem;
+    border-radius: 30px;
+    width: 25em;
+    transition: all ease-in-out .5s;
+    margin-right: -3rem;
+  }
+  
+  .search__input:hover, .search__input:focus {
+    box-shadow: 0 0 1em #00000013;
+  }
+  
+  .search__input:focus {
+    outline: none;
+    background-color: #f0eeee;
+  }
+  
+  .search__input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ccc;
+  }
+  
+  .search__input:focus + .search__button {
+    background-color: #f0eeee;
+  }
+  
+  .search__button {
+    border: none;
+    background-color: #f4f2f2;
+    margin-top: .1em;
+  }
+  
+  .search__button:hover {
+    cursor: pointer;
+  }
+  
+  .search__icon {
+    height: 1.4em;
+    width: 1.4em;
+    fill: #b4b4b4;
+  }
+  
+
+  .card-title{
+    text-align: center;
+  }
+
+  .card-text{
+    text-align: justify;
+  }
+
+  /* Carrousel Texto en medio */
+  .carousel-inner {
+    position: relative;
+  }
+  
+  .carousel-overlay img {
+    filter: brightness(60%); /* Oscurece la imagen */
+  }
+  
+  .carousel-caption {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 10;
+  }
+  
+  .carousel-caption h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.2rem;
+  }
+  
+  .carousel-overlay {
+    position: relative;
+  }
+
+  .muestracar{
+    margin-bottom: 40px;
+  }
+
+  .cardleft{
+    margin-left: 50px;
+  }
+
+  .cardright{
+    margin-left: 590px;
+  }
+
+  .informacion{
+    margin-bottom: 30px;
+  }
+  
