@@ -1,7 +1,7 @@
 <header class="header">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="../../assets/Imagenes/IconoLogo2.png" alt="" width="70px" height="auto"></a>
+      <a class="navbar-brand" routerLink="/home" routerLinkActive="active"><img src="../../assets/Imagenes/IconoLogo2.png" alt="" width="70px" height="auto"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,7 +9,7 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <i class="fa-regular fa-user"></i>
-            <a>Iniciar Sesión</a>
+            <a  [routerLink]="['/login/']" >Iniciar </a>
           </li>
         </ul>
       </div>
@@ -19,6 +19,7 @@
   <!-- Contenedor para el texto, input y botón -->
   <div class="header-content">
     <h3 class="header-title">¿Que se te antoja el dia de hoy?</h3>
+    
     <div class="header-form">
 <div class="search">
     <input type="text" class="search__input" placeholder="Buscar">

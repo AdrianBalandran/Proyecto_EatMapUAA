@@ -65,8 +65,14 @@
     transition-duration: 1s;
   }
 
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+
   .navbar-collapse a{
-    font-style: none;
     font-size: 13px;
     margin-left: 6px;
     color: white;
