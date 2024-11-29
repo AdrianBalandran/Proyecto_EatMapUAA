@@ -1,9 +1,10 @@
 export interface Usuario {
-    id_usuario: number;
-    nombre: string;
-    primape: string; 
-    segape: string; 
-    contraseña: string; 
-    telefono: string; 
-    correo: string;
+    Id_Usuario: number;
+    Nombre: string;
+    Primer_Apellido: string; 
+    Segundo_Apellido: string; 
+    Contrasena: string; 
+    Telefono: string; 
+    Email: string;
+    Tipo: string; 
 }
