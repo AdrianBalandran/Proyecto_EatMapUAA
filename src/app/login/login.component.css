@@ -1,3 +1,21 @@
+.contenido{
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/Imagenes/newfondo.jpg') no-repeat center/cover;
+    /* background-color: #FF4362; */
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenido2{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 135px;
+
+}
 /* Diseño login */
 .form {
     display: flex;
