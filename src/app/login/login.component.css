@@ -7,13 +7,18 @@
     flex-direction: column;
 }
 
+.loginimg{
+  display: grid;
+  justify-content: center;
+}
+
 .contenido2{
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  text-align: center;
-  margin-top: 135px;
+  text-align: start;
+  margin-top: 140px;
 
 }
 /* Diseño login */
