@@ -2,8 +2,9 @@
 .centrarbus {
     display: grid;
     justify-content: center;
+    position: relative;
 
-    margin: 40px;
+    margin: 50px;
 }
 
 .search {
@@ -59,3 +60,37 @@
     width: 1.3em;
     fill: #b4b4b4;
   }
+
+
+  /* Tarjeta para mostrar contenido */
+  .resultados {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .mensaje-error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .resultados .recuadro {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  

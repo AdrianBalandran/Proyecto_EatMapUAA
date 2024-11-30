@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { UsuariosGetService } from '../service/usuarios-get.service';
 import { Usuario } from '../Interface/usuario';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
