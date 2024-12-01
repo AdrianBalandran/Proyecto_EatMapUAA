@@ -10,15 +10,8 @@ export class BusquedaService {
 
   constructor(private http: HttpClient) {}
 
-  // Método para buscar comidas
-  buscarComidas(query: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/comidasxingredientes`, {
-      params: { ingredientes: query },
-    });
-  }
-
-  // Método para buscar menús
-  buscarMenus(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/menus`);
+  // Método para buscar en el backend
+  buscarGeneral(query: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/buscar`, { params: { query } });
   }
 }

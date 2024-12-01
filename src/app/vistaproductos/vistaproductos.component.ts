@@ -21,35 +21,21 @@ export class VistaproductosComponent {
 
   constructor(private busquedaService: BusquedaService) {}
 
-  ngOnInit(): void {
-    this.cargarMenus(); // Cargar los menús por defecto
-  }
-
-  // Cargar menús iniciales
-  cargarMenus(): void {
-    this.busquedaService.buscarMenus().subscribe(
-      (data) => {
-        this.resultados = data;
-      },
-      (error) => {
-        console.error('Error al cargar menús:', error);
-      }
-    );
-  }
-
-  // Método para realizar la búsqueda
   buscar(): void {
     if (this.query.trim() === '') {
-      this.cargarMenus(); // Si la búsqueda está vacía, cargar menús por defecto
-    } else {
-      this.busquedaService.buscarComidas(this.query).subscribe(
-        (data) => {
-          this.resultados = data;
-        },
-        (error) => {
-          console.error('Error al buscar comidas:', error);
-        }
-      );
+      this.resultados = [];
+      return;
     }
+
+    this.busquedaService.buscarGeneral(this.query).subscribe(
+      (data: { menus: any; ingredientes: any; cafeterias: any; }) => {
+        const { menus, ingredientes, cafeterias } = data;
+        this.resultados = [...menus, ...ingredientes, ...cafeterias];
+      },
+      (error: any) => {
+        console.error('Error al realizar la búsqueda:', error);
+        this.resultados = [];
+      }
+    );
   }
 }
