@@ -3,6 +3,7 @@ import { PantallainicioComponent } from './pantallainicio/pantallainicio.compone
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { VistaproductosComponent } from './vistaproductos/vistaproductos.component';
+import { MapalocComponent } from './mapaloc/mapaloc.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la raíz a /home
@@ -10,6 +11,7 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },         // Ruta /login
   { path: 'logout', component: LogoutComponent },      // Ruta /logout
   { path: 'vistaprod', component: VistaproductosComponent },     // Ruta /vistaprod 
+  { path: 'mapa', component: MapalocComponent },     // Ruta /mapaloc
   { path: '**', redirectTo: '/home' }                  // Ruta para páginas no encontradas
 ];
 
