@@ -16,26 +16,29 @@ import { Observable } from 'rxjs';
   styleUrl: './vistaproductos.component.css'
 })
 export class VistaproductosComponent {
-  resultados: any[] = []; // Almacenará los resultados de la búsqueda
-  query: string = ''; // Cadena de búsqueda
+  resultados: any[] = [];
+  query: string = '';
 
   constructor(private busquedaService: BusquedaService) {}
 
   buscar(): void {
-    if (this.query.trim() === '') {
-      this.resultados = [];
-      return;
-    }
-
-    this.busquedaService.buscarGeneral(this.query).subscribe(
-      (data: { menus: any; ingredientes: any; cafeterias: any; }) => {
-        const { menus, ingredientes, cafeterias } = data;
-        this.resultados = [...menus, ...ingredientes, ...cafeterias];
-      },
-      (error: any) => {
-        console.error('Error al realizar la búsqueda:', error);
-        this.resultados = [];
-      }
-    );
+  if (this.query.trim() === '') {
+    this.resultados = [];
+    return;
   }
+
+  this.busquedaService.buscarGeneral(this.query).subscribe(
+    (data) => {
+      console.log('Datos recibidos:', data); // Agregar para depuración
+      this.resultados = [...data.comidas, ...data.cafeterias];
+    },
+    (error: any) => {
+      console.error('Error al realizar la búsqueda:', error);
+      this.resultados = [];
+    }
+  );
 }
+
+  
+}
+

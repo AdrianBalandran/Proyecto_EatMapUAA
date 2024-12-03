@@ -18,19 +18,36 @@
   </div>
 </section>
 
-<section>
-  <p *ngIf="resultados.length === 0">No se encontraron resultados relacionados con "{{ query }}"</p>
+<section class="resultados">
+  
+  <p *ngIf="resultados.length === 0">
+    No se encontraron resultados relacionados con "{{ query }}"
+  </p>
 
-  <div class="resultados">
-    <div *ngFor="let resultado of resultados" class="resultado-card">
-      <h3>{{ resultado.Nombre || resultado.nombre }}</h3>
-      <p *ngIf="resultado.Precio">Precio: ${{ resultado.Precio }}</p>
-      <p *ngIf="resultado.Ingredientes">Ingredientes: {{ resultado.Ingredientes.join(', ') }}</p>
-      <p *ngIf="resultado.Edificio">Edificio: {{ resultado.Edificio }}</p>
-      <p *ngIf="resultado.Sucursales">Sucursales: {{ resultado.Sucursales.length }}</p>
+  <div *ngFor="let resultado of resultados" class="resultado-card">
+    <h3>{{ resultado.Nombre }}</h3>
+    <p *ngIf="resultado.Precio">Precio: ${{ resultado.Precio }}</p>
+    <p *ngIf="resultado.TiempoPreparacion">
+      Tiempo de preparación: {{ resultado.TiempoPreparacion }}
+    </p>
+    <p *ngIf="resultado.Ingredientes">
+      Ingredientes: {{ resultado.Ingredientes.join(', ') }}
+    </p>
+    <div *ngIf="resultado.Cafeterias?.length > 0">
+      <h4>Cafeterías:</h4>
+      <ul>
+        <li *ngFor="let caf of resultado.Cafeterias">
+          {{ caf.Nombre }} - {{ caf.Sucursal }} (Horario: {{ caf.Horario }}, Local: {{ caf.NumeroLocal }})
+        </li>
+      </ul>
     </div>
+    <p *ngIf="resultado.Sucursal">Sucursal: {{ resultado.Sucursal }}</p>
+    <p *ngIf="resultado.Horario">Horario: {{ resultado.Horario }}</p>
+    <p *ngIf="resultado.NumeroLocal">Número de local: {{ resultado.NumeroLocal }}</p>
   </div>
 </section>
+
+
 
 <header>
   <app-menunav></app-menunav>
