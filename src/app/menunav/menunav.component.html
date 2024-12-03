@@ -5,7 +5,7 @@
       <ul class="ul">
         <input checked="" name="rad" class="radio" id="choose1" type="radio" />
         <label for="choose1" title="Feel">
-          <li class="li">
+          <li class="li" [routerLink]="['/vistaprod/']">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -47,25 +47,39 @@
           </li>
         </label>
         <input class="radio" name="rad" id="choose3" type="radio" />
-        <label for="choose3" title="Guardar">
-          <li class="li">
+        <label for="choose3" title="Mapa">
+          <li class="li" [routerLink]="['/mapa/']">
             <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              height="24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              class="svg w-6 h-6 text-gray-800 dark:text-white"
-            >
-              <path
-                d="m17 21-5-4-5 4V3.889a.92.92 0 0 1 .244-.629.808.808 0 0 1 .59-.26h8.333a.81.81 0 0 1 .589.26.92.92 0 0 1 .244.63V21Z"
-                stroke-width="2"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke="currentColor"
-              ></path>
-            </svg>
+            viewBox="0 0 24 24"
+            fill="none"
+            height="24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            class="svg w-6 h-6 text-gray-800 dark:text-white"
+          >
+            <path
+              d="M3 3L9 5L15 3L21 5V19L15 17L9 19L3 17V3Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9 5V19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 3V17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>          
           </li>
         </label>
         <input class="radio" name="rad" id="choose4" type="radio" />
