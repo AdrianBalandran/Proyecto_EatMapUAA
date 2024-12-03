@@ -1,6 +1,6 @@
 export interface CafeteriaSucursal {
-    id_cafeteria: number; 
-    id_sucursal: number; 
-    horario: string; 
-    numero_local: string;  
+    Id_Cafeteria: number; 
+    Id_Sucursal: number; 
+    Horario: string; 
+    Numero_Local: string;  
 }

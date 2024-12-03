@@ -1,5 +1,5 @@
 export interface Cafeteria {
-    id_cafeteria: number; 
-    nombre: string; 
-    edificio: string; 
+    Id_Cafeteria: number; 
+    Nombre: string; 
+    Edificio: string; 
 }

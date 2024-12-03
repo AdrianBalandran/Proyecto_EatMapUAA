@@ -1,9 +1,9 @@
 export interface Comida {
-    id_comida: number; 
-    nombre: string; 
-    precio: number; 
-    id_cafeteria: number; 
-    id_sucursal: number; 
-    tiempo_preparacion: number;  
+    Id_Comida: number; 
+    Nombre: string; 
+    Precio: number; 
+    Id_Cafeteria: number; 
+    Id_Sucursal: number; 
+    TiempoPrepa: number;  
 
 }

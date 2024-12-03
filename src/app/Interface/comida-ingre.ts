@@ -1,4 +1,4 @@
 export interface ComidaIngre {
-    id_ingrediente: number; 
-    id_comida: number; 
+    Id_Ingrediente: number; 
+    Id_Comida: number; 
 }

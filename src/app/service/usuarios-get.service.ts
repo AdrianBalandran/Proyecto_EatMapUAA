@@ -14,6 +14,9 @@ export class UsuariosGetService {
   getJSON(url: string): Observable<any> {
     return this.http.get<any>(url);
   }
-  
+  postNode(url: string, users: Usuario){
+    this.http.post(url, users).subscribe(); 
+  }
+
   
 }

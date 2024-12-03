@@ -1,9 +1,9 @@
 export interface Pedido {
-    id_usuario: number; 
-    id_cafeteria: number; 
-    id_sucursal: number; 
-    orden: number; 
-    pagado: Boolean; 
-    tiempo: number; 
-    tipo_de_pago: string; 
+    Id_Usuario: number; 
+    Id_Cafeteria: number; 
+    Id_Sucursal: number; 
+    Orden: number; 
+    Pagado: Boolean; 
+    Tiempo: number; 
+    Tipo_De_Pago: string; 
 }

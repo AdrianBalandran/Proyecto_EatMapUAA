@@ -1,4 +1,4 @@
 export interface Sucursal {
-    id_sucursal: number; 
-    nombre: string;   
+    Id_Sucursal: number; 
+    Nombre: string;   
 }
