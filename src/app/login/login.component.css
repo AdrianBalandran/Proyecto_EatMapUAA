@@ -89,14 +89,29 @@
   .span {
     font-size: 14px;
     margin-left: 5px;
-    color: #2d79f3;
+    color: #FF4362;
     font-weight: 500;
-    cursor: pointer;
   }
   
+  .span-cursor {
+    cursor: pointer;
+  }
+
   .button-submit {
     margin: 20px 0 10px 0;
     background-color: #151717;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+  }
+  .button-submit-error {
+    margin: 20px 0 10px 0;
+    background-color: #FF4362;
     border: none;
     color: white;
     font-size: 15px;
@@ -145,3 +160,4 @@
     justify-content: center;
     align-items: center;
   }
+

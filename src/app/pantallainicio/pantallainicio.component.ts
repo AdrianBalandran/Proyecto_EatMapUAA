@@ -3,6 +3,8 @@ import { MenunavComponent } from "../menunav/menunav.component";
 import { FooterbajoComponent } from "../footerbajo/footerbajo.component";
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UsuariosGetService } from '../service/usuarios-get.service';
+import { SessionManagementService } from '../service/session-management.service';
 
 @Component({
   selector: 'app-pantallainicio',
@@ -12,6 +14,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pantallainicio.component.css'
 })
 export class PantallainicioComponent {
-
-  constructor(private router : Router){}
+  nombre: any = "";
+  auth: boolean = false; 
+  constructor(private router: Router, private session: SessionManagementService){
+    if(this.session.isAuthenticated()){
+      this.actualizar(true);
+    }
+  }
+  
+  actualizar(flag: boolean){
+    this.nombre = this.session.getSessionName(); 
+    this.auth = flag; 
+  }
+  
+  endsession(){
+    this.session.endSession(); 
+    this.actualizar(false);
+  }
 }

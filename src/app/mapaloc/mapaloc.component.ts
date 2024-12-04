@@ -8,8 +8,7 @@ import { MenunavComponent } from "../menunav/menunav.component";
   standalone: true,
   imports: [
     CommonModule,
-    GoogleMapsModule // Importa el módulo aquí
-    ,
+    GoogleMapsModule, // Importa el módulo aquí
     MenunavComponent
 ],
   templateUrl: './mapaloc.component.html',

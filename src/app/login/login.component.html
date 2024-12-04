@@ -42,10 +42,10 @@
 
       <div class="flex-row">
 
-        <span class="span">¿Olvidaste tu contraseña?</span>
+      <span class="span">{{ error }}</span>
       </div>
-      <button (click)="comprobarUsuario()" class="button-submit" [disabled]="loginForm.invalid">Inicial sesión</button>
-      <p class="p">¿No tienes cuenta? <span class="span" [routerLink]="['/logout/']">Registrarse</span>
+      <button (click)="comprobarUsuario()" class="button-submit" [ngClass]="loginForm.invalid ? 'button-submit' : 'button-submit-error'">Inicial sesión</button>
+      <p class="p">¿No tienes cuenta? <span class="span span-cursor" [routerLink]="['/logout/']">Registrarse</span>
       </p>
 
     </form>

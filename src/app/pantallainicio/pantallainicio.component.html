@@ -9,7 +9,11 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <i class="fa-regular fa-user"></i>
-            <a  [routerLink]="['/login/']" >Iniciar Sesión</a>
+            @if(!auth){
+              <a [routerLink]="['/login/']">Iniciar Sesión</a>
+            }@else{
+              <a  (click)="endsession()">{{ nombre }}</a>
+            }
           </li>
         </ul>
       </div>

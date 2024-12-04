@@ -69,7 +69,11 @@
           </svg>
         </div>
 
-        <button class="button-submit" (click)="comprobarUsuario()" >Registrarse</button>
+        <div class="flex-row">
+          <span class="span">{{ error }}</span>
+        </div>
+
+        <button class="button-submit" (click)="comprobarUsuario()" [ngClass]="registroForm.invalid ? 'button-submit' : 'button-submit-error'">Registrarse</button>
 
       </form>
     </div>

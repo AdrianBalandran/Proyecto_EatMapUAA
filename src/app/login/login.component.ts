@@ -5,11 +5,12 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule, Routes } from '@angular/router';import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { SessionManagementService } from '../service/session-management.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HttpClientModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [HttpClientModule, CommonModule, RouterModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -23,6 +24,7 @@ export class LoginComponent {
 
     correo!: String; 
     contra!: String; 
+    error: String = ""; 
 
     urlAPI: string = "http://localhost:3000/usuarios"; 
 
@@ -58,20 +60,30 @@ export class LoginComponent {
     }
 
     comprobarUsuario(){
+      if(this.loginForm.invalid){
+        this.error = "Los datos son incorrectos."; 
+        return; 
+      }
+      
       let flagUser: boolean = false; 
-      this.correo = this.loginForm?.get('email')?.value!
-      this.contra = this.loginForm?.get('contras')?.value!
+      let nombre: string = ""; 
+      this.correo = this.loginForm?.get('email')?.value!;
+      this.contra = this.loginForm?.get('contras')?.value!;
       for(let usu of this.usuarios){
         if(usu.Email == this.correo){
           if(usu.Contrasena == this.contra){
             flagUser = true; 
+            nombre = usu.Nombre; 
           }
         }
       }
       if(flagUser){
         this.session.endSession(); 
-        this.session.setSession(this.correo);
-        this.router.navigate(['/home']);  
+        this.session.setSession(this.correo, nombre);
+        this.router.navigate(['/vistaprod']);  
+        this.error = "Correcto";
+      }else{
+        this.error = "Usuario o contraseña incorrecto.";
       }
     }
 

@@ -6,4 +6,5 @@ export interface Pedido {
     Pagado: Boolean; 
     Tiempo: number; 
     Tipo_De_Pago: string; 
+    Fecha: Date; 
 }

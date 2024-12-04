@@ -18,6 +18,7 @@ import { SessionManagementService } from '../service/session-management.service'
 export class LogoutComponent {
   private usuarios!: Usuario[]; 
   private crear = true; 
+  error: String = ""; 
 
   urlAPI: string = "http://localhost:3000/usuarios"; 
 
@@ -64,12 +65,14 @@ export class LogoutComponent {
 
   comprobarUsuario(): boolean{
     if(this.registroForm.invalid){
-      console.log("algo esta mal");
+      this.error = "Los datos son incorrectos."; 
+      return false; 
     }
     for(let usu of this.usuarios){
       if(usu.Email == this.registroForm?.get('correo')?.value!){
-        console.log("No se puede crear la cuenta");
+        // console.log("No se puede crear la cuenta");
         this.crear = false;  
+        this.error = "El correo ya fue utilizado."; 
       }
     }
     if(this.crear){
@@ -82,13 +85,15 @@ export class LogoutComponent {
         Email: this.registroForm?.get('correo')?.value!, 
         Contrasena: this.registroForm?.get('contra')?.value!, 
         Telefono: this.registroForm?.get('telefono')?.value!,
-        Tipo: "Cliente"
+        Tipo: "Cliente", 
+        Id_Cafeteria: 0,
+        Id_Sucursal: 0,
       }
 
       this.session.endSession(); 
-      this.session.setSession(this.registroForm?.get('correo')?.value!);
+      this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!);
       this.getusu.postNode(urlAPISend, user);
-      this.router.navigate(['/home']);  
+      this.router.navigate(['/vistaprod']);  
     }
     return false; 
   }
