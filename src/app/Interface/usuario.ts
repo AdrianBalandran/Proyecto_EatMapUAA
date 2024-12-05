@@ -7,6 +7,4 @@ export interface Usuario {
     Telefono: string; 
     Email: string;
     Tipo: string; 
-    Id_Cafeteria: number; 
-    Id_Sucursal: number; 
 }

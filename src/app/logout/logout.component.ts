@@ -86,8 +86,6 @@ export class LogoutComponent {
         Contrasena: this.registroForm?.get('contra')?.value!, 
         Telefono: this.registroForm?.get('telefono')?.value!,
         Tipo: "Cliente", 
-        Id_Cafeteria: 0,
-        Id_Sucursal: 0,
       }
 
       this.session.endSession(); 

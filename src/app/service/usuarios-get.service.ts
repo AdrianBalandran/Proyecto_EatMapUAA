@@ -18,5 +18,9 @@ export class UsuariosGetService {
     this.http.post(url, users).subscribe(); 
   }
 
+  getusuario(url: string, user: any): any {
+    // return this.http.post(url, user).subscribe(); 
+    return this.http.post<any>(url, user);
+  }
   
 }
