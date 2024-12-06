@@ -1,4 +1,4 @@
-.body, .nombre, .sub, .sub1, .icon, .value, .tipo{
+.body, .nombre, .sub, .sub1, .icon, .value, .tipo, .subody, .cafe, .sucu, .login{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,14 @@
     background-color: white;
     width: 100%;
     height: 600px;
+    flex-wrap: wrap;
+}
+.subody{
+    width: 100%;
+}
+
+.body1{
+    height: 900px;
 }
 
 .card{
@@ -18,7 +26,6 @@
     position: relative;
     border-radius: 35px;
 }
-
 .image{
     position: absolute;
     right: 150px;
@@ -28,6 +35,7 @@
     width: 100px;
     height: 100px;
 }
+
 
 .image img{
     width: 100%;
@@ -92,4 +100,58 @@
 .value{
     width: 75%;
     height: 100%;
+}
+
+.card1{
+    background-color: #FF4362;
+    width: 400px;
+    height: 300px;
+    border: none;
+    position: relative;
+    border-radius: 35px;
+}
+
+.cafe{
+    /* background-color: blue; */
+    position: absolute;
+    top: 150px;
+    width: 400px;
+    height: 50px;
+}
+.sucu{
+    /* background-color: blue; */
+    position: absolute;
+    top: 200px;
+    width: 400px;
+    height: 50px;
+}
+
+.esta{
+    position: absolute;
+    right: 150px;
+    top: 25px;
+    background-color: #FF4362;
+    width: 100px;
+    height: 100px;
+}
+
+.esta img{
+    width: 100%;
+    height: 100%;
+}
+
+.login{
+    position: absolute;
+    top: 200px;
+    right: 50px;
+    background-color: white;
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
+}
+.textocursor{
+    cursor: pointer;
+    background-color: white;
+    color: #FF4362;
+    text-decoration: none;
 }

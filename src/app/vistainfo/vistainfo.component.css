@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+p, li{
+    letter-spacing: 2px;
+    font-size: 17px;
+}
+
+.division, .titulo, .info1, .precio, .subdivision{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subdivision{
+    border: 5px solid #fd4263;
+}
+
+.icon{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.division, .subdivision{
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+.titulo{
+    width: 100%;
+    height: 120px;
+    background-color: #fd4263;
+    margin-bottom: 30px;
+}
+
+.titulo p{
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    margin: auto auto;
+}
+
+.info{
+    width: 50%;
+    padding: 20px;
+    /* background-color: blueviolet; */
+}
+
+.subtitulo{
+    color: black;
+    text-align: center;
+    font-size: 25px;
+    margin: auto auto 15px;
+}
+
+.info ul{
+    margin-left: 30px;
+    margin-right: 20px;
+}
+
+.info1{
+    width: 50%;
+    /* background-color: antiquewhite; */
+    flex-wrap: wrap;
+}
+
+.info1 .precio{
+    width: 100%;
+    /* background-color: palegreen; */
+    flex-wrap: wrap;
+    margin: 10px;
+}
+.info1 .precio .icon{
+    width: 50%;
+    /* background-color: blue; */
+}
+.info1 .precio .value{
+    width: 50%;
+
+    /* background-color: white; */
+}
+
+

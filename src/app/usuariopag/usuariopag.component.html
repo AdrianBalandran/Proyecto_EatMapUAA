@@ -1,35 +1,66 @@
 @if(auth){
-<div class="body">
-    <div class="card">
-        <div class="image">
-            <img src="/assets/Imagenes/image.png" alt="Usuario">
+<div class="body" [ngClass]="{'body1': flagencargado}">
+    <div class="subody">
+        <div class="card">
+            <div class="image">
+                <img src="/assets/Imagenes/image.png" alt="Usuario">
+            </div>
+            <div class="nombre">
+                <p class="texto textonombre">{{usuario.Nombre}} {{usuario.Primer_Apellido}} {{usuario.Segundo_Apellido}}</p>
+            </div>
+            <div class="tipo">
+                <p class="texto textop bold">{{usuario.Tipo}}</p>
         </div>
-        <div class="nombre">
-             <p class="texto textonombre">{{usuario.Nombre}} {{usuario.Primer_Apellido}} {{usuario.Segundo_Apellido}}</p>
-        </div>
-        <div class="tipo">
-            <p class="texto textop bold">{{usuario.Tipo}}</p>
-       </div>
 
-        <div class="sub">
-            <div class="icon">
-                <i class="fa-solid fa-envelope fa-2xl" style="color: #ffffff;"></i>
+            <div class="sub">
+                <div class="icon">
+                    <i class="fa-solid fa-envelope fa-2xl" style="color: #ffffff;"></i>
+                </div>
+                <div class="value">
+                    <p class="texto textop">{{usuario.Email}}</p>
+                </div>
             </div>
-            <div class="value">
-                <p class="texto textop">{{usuario.Email}}</p>
-            </div>
-        </div>
-        <div class="sub1">
-            <div class="icon">
-                <i class="fa-solid fa-phone fa-2xl" style="color: #ffffff;"></i>            </div>
-            <div class="value">
-                <p class="texto textop">{{usuario.Telefono}}</p>
+            <div class="sub1">
+                <div class="icon">
+                    <i class="fa-solid fa-phone fa-2xl" style="color: #ffffff;"></i>            
+                </div>
+                <div class="value">
+                    <p class="texto textop">{{usuario.Telefono}}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
-}@else{
 
+    @if(flagencargado){
+        <div class="card1">
+            <div class="esta">
+                <img src="/assets/Imagenes/casa.png" alt="Establecimiento">
+            </div>
+            <div class="cafe">
+                <p class="texto textonombre">{{encargado.NombreCafe}}</p>
+            </div>
+            <div class="sucu">
+                <p class="texto textonombre">{{encargado.NombreSucu}}</p>
+            </div>
+        </div>
+    }
+</div>
+
+
+}@else{
+    <div class="body">
+        <div class="subody">
+            <div class="card1">
+                <div class="image">
+                    <img src="/assets/Imagenes/image.png" alt="Usuario">
+                </div>    
+                <div class="login">
+                    <a class="texto textonombre textocursor" [routerLink]="['/login/']">Ingresa a tu cuenta</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 }
 
 <header>

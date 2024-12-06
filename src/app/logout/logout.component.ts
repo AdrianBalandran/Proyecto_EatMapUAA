@@ -89,7 +89,7 @@ export class LogoutComponent {
       }
 
       this.session.endSession(); 
-      this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!);
+      this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!, Number(this.usuarios[this.usuarios.length-1].Id_Usuario) +1);
       this.getusu.postNode(urlAPISend, user);
       this.router.navigate(['/vistaprod']);  
     }

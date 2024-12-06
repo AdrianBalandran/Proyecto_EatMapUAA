@@ -1,0 +1,44 @@
+<div class="division">
+    <div class="titulo">
+        <p>{{ comida.Nombre }}</p>
+    </div>
+    <div class="subdivision">
+        <div class="info">
+            <p class="subtitulo">Ingredientes</p>
+            <ul>
+                <li>FC. Barcelona</li>
+                <li>Real Madrid</li>
+                <li>Real Betis</li>
+                <li>Atlético de Madrid</li>
+            </ul>
+        </div>
+        <div class="info1">
+            <div class="precio">
+                <div class="icon">
+                    <i class="fa-solid fa-money-bill fa-2xl" style="color: #fc466a;"></i>            
+                </div>
+                <div class="value">
+                    <p>${{ comida.Precio }}</p>
+                </div>
+            </div>
+            <div class="precio">
+                <div class="icon">
+                    <i class="fa-regular fa-clock fa-2xl" style="color: #fc476a;"></i>
+                </div>
+                <div class="value">
+                    <p>{{ comida.TiempoPrepa }} minutos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subdivision">
+        <p class="subtitulo">Cafetería</p>
+        <!-- <div class="cafe">
+            <p>La Gula</p>
+        </div> -->
+    </div>
+    <div class="subdivision">
+        <button>Agregar Carrito</button>
+        <button>Comprar Ahora</button>
+    </div>
+</div>

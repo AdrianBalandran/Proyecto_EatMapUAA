@@ -67,19 +67,21 @@ export class LoginComponent {
       
       let flagUser: boolean = false; 
       let nombre: string = ""; 
+      let id: number = 0; 
       this.correo = this.loginForm?.get('email')?.value!;
       this.contra = this.loginForm?.get('contras')?.value!;
       for(let usu of this.usuarios){
         if(usu.Email == this.correo){
           if(usu.Contrasena == this.contra){
             flagUser = true; 
-            nombre = usu.Nombre; 
+            nombre = usu.Nombre;
+            id = usu.Id_Usuario; 
           }
         }
       }
       if(flagUser){
         this.session.endSession(); 
-        this.session.setSession(this.correo, nombre);
+        this.session.setSession(this.correo, nombre, id);
         this.router.navigate(['/vistaprod']);  
         this.error = "Correcto";
       }else{

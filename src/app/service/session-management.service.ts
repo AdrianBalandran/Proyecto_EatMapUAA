@@ -9,11 +9,13 @@ export class SessionManagementService {
 
   private sessionKey = 'user_session';
   private sessionName = 'user_name';
-  
+  private sessionId = 'user_id';
+
   // Set the session data in localStorage
-  setSession(sessionData: any, sessionName: any): void {
+  setSession(sessionData: any, sessionName: any, sessionId: any): void {
     localStorage.setItem(this.sessionKey, JSON.stringify(sessionData));
     localStorage.setItem(this.sessionName, JSON.stringify(sessionName));
+    localStorage.setItem(this.sessionId, JSON.stringify(sessionId));
       // Retrieve session data from localStorage
   }
 
@@ -24,6 +26,10 @@ export class SessionManagementService {
 
   getSessionName(): any | null {
     const session = localStorage.getItem(this.sessionName);
+    return session ? JSON.parse(session) : null;
+  }
+  getSessionId(): any | null {
+    const session = localStorage.getItem(this.sessionId);
     return session ? JSON.parse(session) : null;
   }
 
