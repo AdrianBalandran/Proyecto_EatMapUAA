@@ -5,6 +5,7 @@
       class="search__input"
       placeholder="Escribe el nombre de una comida, ingrediente o cafetería"
       [(ngModel)]="query"
+      (keydown.enter)="buscar()"
     />
     <button class="search__button" (click)="buscar()">
       <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
@@ -18,32 +19,126 @@
   </div>
 </section>
 
-<section class="resultados">
-  
-  <p *ngIf="resultados.length === 0">
-    No se encontraron resultados relacionados con "{{ query }}"
-  </p>
+<!-- Filtro de las categoria de busqueda o bien contenido -->
+ <div class="centfil">
+  <div class="wrapper">
+    <div class="option">
+      <input checked value="comida" name="filtro" type="radio" id="comida" class="input" (change)="setFiltro('comida')"/>
+      <div class="btn">
+        <span class="span" for="comida">Comida</span>
+      </div>
+    </div>
+    <div class="option">
+      <input value="cafeteria" name="filtro" type="radio" id="cafeteria" class="input" (change)="setFiltro('cafeteria')"/>
+      <div class="btn">
+        <span class="span" for="cafeteria">Cafetería</span>
+      </div>
+    </div>
+    <div class="option">
+      <input value="ingrediente" name="filtro" type="radio" id="ingrediente" class="input" (change)="setFiltro('ingrediente')"/>
+      <div class="btn">
+        <span class="span" for="ingrediente">Ingrediente</span>
+      </div>
+    </div>
+  </div>
 
-  <div *ngFor="let resultado of resultados" class="resultado-card">
-    <h3>{{ resultado.Nombre }}</h3>
-    <p *ngIf="resultado.Precio">Precio: ${{ resultado.Precio }}</p>
-    <p *ngIf="resultado.TiempoPreparacion">
-      Tiempo de preparación: {{ resultado.TiempoPreparacion }}
-    </p>
-    <p *ngIf="resultado.Ingredientes">
-      Ingredientes: {{ resultado.Ingredientes.join(', ') }}
-    </p>
-    <div *ngIf="resultado.Cafeterias?.length > 0">
-      <h4>Cafeterías:</h4>
+ </div>
+
+
+
+
+
+<section *ngIf="mensajeError" class="error-message">
+  <h3>{{ mensajeError }}</h3>
+  <br>
+  <!-- Loader --> 
+  <div class="main">
+    <div class="dog">
+      <div class="dog__paws">
+        <div class="dog__bl-leg leg">
+          <div class="dog__bl-paw paw"></div>
+          <div class="dog__bl-top top"></div>
+        </div>
+        <div class="dog__fl-leg leg">
+          <div class="dog__fl-paw paw"></div>
+          <div class="dog__fl-top top"></div>
+        </div>
+        <div class="dog__fr-leg leg">
+          <div class="dog__fr-paw paw"></div>
+          <div class="dog__fr-top top"></div>
+        </div>
+      </div>
+  
+      <div class="dog__body">
+        <div class="dog__tail"></div>
+      </div>
+  
+      <div class="dog__head">
+        <div class="dog__snout">
+          <div class="dog__eyes">
+            <div class="dog__eye-l"></div>
+            <div class="dog__eye-r"></div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="dog__head-c">
+        <div class="dog__ear-r"></div>
+        <div class="dog__ear-l"></div>
+      </div>
+    </div>
+  </div>
+  
+</section>
+
+
+<section *ngIf="resultados.length > 0" class="resultados">
+  <!-- Iteramos por cada resultado -->
+  <div *ngFor="let resultado of resultados" class="resultado">
+    <!-- Bloque específico para el filtro "comida" -->
+    <ng-container *ngIf="filtro === 'comida'">
+      <h3>{{ resultado.Nombre }}</h3>
+      <p><strong>Precio:</strong> $ {{ resultado.Precio }}</p>
+      <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
+      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
+      <p><strong>Disponibilidad:</strong></p>
       <ul>
-        <li *ngFor="let caf of resultado.Cafeterias">
-          {{ caf.Nombre }} - {{ caf.Sucursal }} (Horario: {{ caf.Horario }}, Local: {{ caf.NumeroLocal }})
+        <li *ngFor="let disp of resultado.Disponibilidad">
+          {{ disp.Cafeteria }} - {{ disp.Sucursal }}
         </li>
       </ul>
-    </div>
-    <p *ngIf="resultado.Sucursal">Sucursal: {{ resultado.Sucursal }}</p>
-    <p *ngIf="resultado.Horario">Horario: {{ resultado.Horario }}</p>
-    <p *ngIf="resultado.NumeroLocal">Número de local: {{ resultado.NumeroLocal }}</p>
+    </ng-container>
+
+    <!-- Bloque específico para el filtro "cafeteria" -->
+    <ng-container *ngIf="filtro === 'cafeteria'">
+      <h3>{{ resultado.Nombre }}</h3>
+      <p><strong>Sucursales:</strong></p>
+      <ul>
+        <li *ngFor="let suc of resultado.Sucursales">
+          <h4>- {{ suc.NombreSucursal }}</h4>
+          <b>Horario:</b> {{ suc.Horario }} <br>
+          <b>Local:</b> {{ suc.NumeroLocal }} <br>
+          <b>Edificio:</b> {{ suc.Edificio }}
+        </li>
+      </ul>
+    </ng-container>
+
+    <!-- Bloque específico para el filtro "ingrediente" -->
+    <ng-container *ngIf="filtro === 'ingrediente'">
+
+        <h3>{{ resultado.Nombre }}</h3>
+        <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
+        <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
+        <p><strong>Disponibilidad:</strong></p>
+        <ul>
+          <li *ngFor="let disp of resultado.Disponibilidad">
+            <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
+            Local: {{ disp.NumeroLocal }} <br>
+            Edificio: {{ disp.Edificio }}
+          </li>
+        </ul>
+
+    </ng-container>
   </div>
 </section>
 

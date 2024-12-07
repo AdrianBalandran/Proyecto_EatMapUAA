@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 import { FooterbajoComponent } from "../footerbajo/footerbajo.component";
 import { MenunavComponent } from "../menunav/menunav.component";
 import { BusquedaService } from '../busqueda.service';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Comida } from '../Interface/comida'; // Ajusta la ruta al modelo correcto
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-vistaproductos',
@@ -16,29 +13,45 @@ import { Observable } from 'rxjs';
   styleUrl: './vistaproductos.component.css'
 })
 export class VistaproductosComponent {
-  resultados: any[] = [];
   query: string = '';
+  filtro: string = 'comida'; // Valor predeterminado
+  resultados: any[] = [];
+  mensajeError: string = '';
 
   constructor(private busquedaService: BusquedaService) {}
 
-  buscar(): void {
-  if (this.query.trim() === '') {
+  // Resetear los resultados y el mensaje de error al cambiar el filtro
+  setFiltro(filtro: string) {
+    this.query = '';
+    this.filtro = filtro;
     this.resultados = [];
-    return;
+    this.mensajeError = '';
   }
 
-  this.busquedaService.buscarGeneral(this.query).subscribe(
-    (data) => {
-      console.log('Datos recibidos:', data); // Agregar para depuración
-      this.resultados = [...data.comidas, ...data.cafeterias];
-    },
-    (error: any) => {
-      console.error('Error al realizar la búsqueda:', error);
+  buscar() {
+    if (!this.query.trim()) {
+      this.mensajeError = 'Por favor, escribe algo para buscar.';
       this.resultados = [];
+      return;
     }
-  );
-}
-
+  
+    this.busquedaService.buscar(this.query, this.filtro).subscribe(
+      (data) => {
+        // console.log('Datos recibidos:', data); // Verifica la estructura aquí
+        if (data.length === 0) {
+          this.mensajeError = `No está disponible "${this.query}" por el momento.`;
+          this.resultados = [];
+        } else {
+          this.mensajeError = '';
+          this.resultados = data;
+        }
+      },
+      (error) => {
+        this.mensajeError = `No está disponible "${this.query}" por el momento.`;
+        console.error(error);
+      }
+    );
+  }
   
 }
 
