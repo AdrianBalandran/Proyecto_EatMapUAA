@@ -6,6 +6,7 @@ import { VistaproductosComponent } from './vistaproductos/vistaproductos.compone
 import { MapalocComponent } from './mapaloc/mapaloc.component';
 import { VistainfoComponent } from './vistainfo/vistainfo.component';
 import { UsuariopagComponent } from './usuariopag/usuariopag.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la raíz a /home
@@ -16,6 +17,7 @@ export const appRoutes: Routes = [
   { path: 'vistaprod', component: VistaproductosComponent },     // Ruta /vistaprod 
   { path: 'mapa', component: MapalocComponent },     // Ruta /mapaloc
   { path: 'usuario', component: UsuariopagComponent },     // Ruta /usuario
+  { path: 'pedidos', component: PedidosComponent },     // Ruta /pedidos
   { path: '**', redirectTo: '/home' }                  // Ruta para páginas no encontradas
 ];
 

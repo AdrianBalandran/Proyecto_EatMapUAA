@@ -1,0 +1,93 @@
+<div class="body">
+    <div class="enespera">
+        <div class="titulo">
+            <p>En espera</p>
+        </div>
+        @if(NoPagados != 0){
+            @for(pedido of pedidos; track pedido){
+                @if(pedido.Pagado == "N"){
+                    <div class="tarjeta">
+                        <div class="imgcomida">
+                            <img src="/assets/Imagenes/comida.png" alt="Comida">                        
+                        </div>
+                        <div class="comida"><p>{{pedido.Comida}}</p></div>
+                        <div class="precio"><p>${{pedido.Precio}}</p></div>
+                        <div class="espera"><p>Espera {{pedido.Tiempo}} min</p></div>
+                        <div class="fecha"><p>{{pedido.Fecha}}</p></div>
+                        @if(pedido.Pagado == "N"){
+                            <div class="recogido"><p>No recogido</p></div>
+                        }@else{
+                            <div class="norecogido"><p>Recogido</p></div>
+                        }
+                        <div class="imgcafeteria">
+                            <img src="/assets/Imagenes/casa.png" alt="Cafetería">
+                        </div>
+                        <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
+                        <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                        <div class="tipo">
+                            @if(pedido.Tipo_pago == "T"){
+                                <p>Tarjeta</p>
+                            }@else{
+                                <p>Efectivo</p>
+                            }
+                        </div>
+                    </div>    
+                }
+            }    
+        }@else{
+            <div class="otratarjeta">
+                <div class="nohay"><p>No hay pedidos en espera</p></div>
+            </div>
+        }
+
+    </div>
+
+    <div class="pasados">
+        <div class="titulo">
+            <p>Todos los Pedidos</p>
+        </div>
+        @if(tamano != 0){
+            @for(pedido of pedidos; track pedido){
+                <div class="tarjeta">
+                    <div class="imgcomida">
+                        <img src="/assets/Imagenes/comida.png" alt="Comida">
+                        <!-- <img src="/assets/Imagenes/logonuevologin.png" alt="Comida"> -->
+                    </div>
+                    <div class="comida"><p>{{pedido.Comida}}</p></div>
+                    <div class="precio"><p>${{pedido.Precio}}</p></div>
+                    <div class="espera"><p>Espera {{pedido.Tiempo}} min</p></div>
+                    <div class="fecha"><p>{{pedido.Fecha}}</p></div>
+                    @if(pedido.Pagado == "N"){
+                        <div class="recogido"><p>No recogido</p></div>
+                    }@else{
+                        <div class="norecogido"><p>Recogido</p></div>
+                    }
+                    <div class="imgcafeteria">
+                        <img src="/assets/Imagenes/casa.png" alt="Cafetería">
+                    </div>
+                    <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
+                    <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                    <div class="tipo">
+                        @if(pedido.Tipo_pago == "T"){
+                            <p>Tarjeta</p>
+                        }@else{
+                            <p>Efectivo</p>
+                        }
+                    </div>
+                </div>
+            }
+        }@else{
+            <div class="otratarjeta">
+                <div class="nohay"><p>No hay pedidos</p></div>
+            </div>
+        }
+    </div>
+</div>
+
+<header>
+    <app-menunav></app-menunav>
+</header>
+
+<footer>
+    <app-footerbajo></app-footerbajo>
+</footer>
