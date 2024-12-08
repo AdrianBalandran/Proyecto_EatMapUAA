@@ -9,15 +9,13 @@ p, li{
     font-size: 17px;
 }
 
-.division, .titulo, .info1, .precio, .subdivision{
+.division, .titulo, .info1, .precio, .subdivision, .ingre, .ingre p, .tiempovalue, .preciovalue, .boton, .necesario,
+.input{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.subdivision{
-    border: 5px solid #fd4263;
-}
 
 .icon{
     display: flex;
@@ -34,11 +32,29 @@ p, li{
     flex-wrap: wrap;
 }
 
+.division{
+    margin-bottom: 50px;
+}
+
+.subdivision{
+    justify-content: space-evenly;
+    column-gap: 20px;
+    padding-top: 50px;
+    /* background-color: aquamarine; */
+}
+
 .titulo{
     width: 100%;
     height: 120px;
     background-color: #fd4263;
     margin-bottom: 30px;
+}
+
+.subtitulo{
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    margin: auto auto 15px;
 }
 
 .titulo p{
@@ -49,16 +65,8 @@ p, li{
 }
 
 .info{
-    width: 50%;
+    width: 60%;
     padding: 20px;
-    /* background-color: blueviolet; */
-}
-
-.subtitulo{
-    color: black;
-    text-align: center;
-    font-size: 25px;
-    margin: auto auto 15px;
 }
 
 .info ul{
@@ -67,25 +75,134 @@ p, li{
 }
 
 .info1{
-    width: 50%;
-    /* background-color: antiquewhite; */
+    width: 30%;
+}
+
+.info, .info1{
+    height: 280px;
+    border-radius: 50px;
+    color: white;
+    background-color: #fd4263;
+    position: relative;
+}
+
+.ingre{
+    position: absolute;
+    top: 80px;
+    right: 7%;
+    /* background-color: aqua; */
+    width: 85%;
+    height: 130px;
+    column-gap: 2%;
     flex-wrap: wrap;
 }
 
-.info1 .precio{
+.ingre p{
+    background-color: white;
+    width: 150px;
+    height: 50px;
+    border-radius: 20px;
+    color: black;
+}
+
+
+.preciovalue{
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 60%;
+    height: 25%;
+    background-color: white;
+    border-radius: 20px;
+}
+.tiempovalue{
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
+    width: 60%;
+    height: 25%;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.preciovalue p, .tiempovalue p{
+    color: black;
+}
+
+.cafeteria{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 95%;
+    height: 250px;
+    background-color: white;
+    border-radius: 30px;
+    border: 10px solid #fd4263; 
+}
+.negro{
+    margin-top: 10px;
+    color: black; 
     width: 100%;
-    /* background-color: palegreen; */
+    text-align: center;
+}
+.necesario{
+    width: 40%;
+    height: 180px;
+    border-radius: 20px;
+    background-color: white;
+    border: 5px solid black;
     flex-wrap: wrap;
-    margin: 10px;
 }
-.info1 .precio .icon{
+
+.input{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    justify-content: start;
+}
+.sub{
     width: 50%;
-    /* background-color: blue; */
+    height: 100px;
+    /* background-color: aqua; */
 }
-.info1 .precio .value{
-    width: 50%;
-
-    /* background-color: white; */
+.sub input{
+    width: 16px;
+    height: 16px;
+    border: 2px solid #fd4263;
+}
+.sub label{
+    margin-left: 10px;
+}
+.input{
+    margin: 7px; 
+}
+.boton{
+    width: 100%;
+    background-color: white;
+    height: 100px;
 }
 
+.boton button{
+    height: 60px;
+    width: 230px;
+    border-radius: 20px;
+    color: white;
+    background-color: #fd4263;
+    border: none;
+}
 
+.boton button:hover{
+    background-color: black;
+    border: none;
+}
+
+@media (max-width: 750px) {
+    .info{
+        width: 90%;
+    }
+    
+    .info1{
+        margin-top: 30px;
+        width: 90%;
+    }
+
+}

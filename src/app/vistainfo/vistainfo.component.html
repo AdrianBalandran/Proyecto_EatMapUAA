@@ -5,40 +5,48 @@
     <div class="subdivision">
         <div class="info">
             <p class="subtitulo">Ingredientes</p>
-            <ul>
-                <li>FC. Barcelona</li>
-                <li>Real Madrid</li>
-                <li>Real Betis</li>
-                <li>Atlético de Madrid</li>
-            </ul>
+            <div class="ingre">
+                @for(ingre of informacion.Ingredientes; track ingre){
+                    <p class="negro">{{ingre}}</p>
+                }
+            </div>
         </div>
         <div class="info1">
-            <div class="precio">
-                <div class="icon">
-                    <i class="fa-solid fa-money-bill fa-2xl" style="color: #fc466a;"></i>            
-                </div>
-                <div class="value">
-                    <p>${{ comida.Precio }}</p>
-                </div>
+            <div class="preciovalue">
+                <p class="negro">Precio: ${{comida.Precio}}</p>
             </div>
-            <div class="precio">
-                <div class="icon">
-                    <i class="fa-regular fa-clock fa-2xl" style="color: #fc476a;"></i>
+            <div class="tiempovalue">
+                <p class="negro">Preparación: {{comida.TiempoPrepa}} min</p>
+            </div>
+        </div>
+        <div class="cafeteria">
+            <p class="subtitulo negro">Cafetería</p>
+            <p class="negro"> {{informacion.NombreCafeteria}} </p>
+            <p class="negro"> {{informacion.NombreSucursal}} </p>
+            <p class="negro">Edificio {{informacion.SucursalEdificio}}, Local {{informacion.Local}}</p>
+            <p class="negro">{{informacion.Horario}}</p>
+        </div>
+        <div class="necesario">
+            <p class="negro">Tipo de pago</p>
+            <div class="sub">
+                <div class="input">
+                    <input type="radio" value="Efectivo" name="tipoP" id="efectivo">    
+                    <label for="efectivo">Efectivo</label>            
                 </div>
-                <div class="value">
-                    <p>{{ comida.TiempoPrepa }} minutos</p>
+                <div class="input">
+                    <input type="radio" value="Tarjeta" name="tipoP" id="tarjeta">
+                    <label for="tarjeta">Tarjeta</label>            
                 </div>
             </div>
         </div>
-    </div>
-    <div class="subdivision">
-        <p class="subtitulo">Cafetería</p>
-        <!-- <div class="cafe">
-            <p>La Gula</p>
-        </div> -->
-    </div>
-    <div class="subdivision">
-        <button>Agregar Carrito</button>
-        <button>Comprar Ahora</button>
+        @if(auth){
+            <div class="boton">
+                <button>Pedir</button>
+            </div>
+        }
     </div>
 </div>
+
+<footer>
+    <app-footerbajo></app-footerbajo>
+</footer>
