@@ -38,6 +38,7 @@ export class SessionManagementService {
   endSession(): void {
     localStorage.removeItem(this.sessionKey);
     localStorage.removeItem(this.sessionName);
+    localStorage.removeItem(this.sessionId);
   }
 
   // Check if the user is authenticated
