@@ -1,7 +1,9 @@
 <div id="map" class="map-container"></div>
 
+<header>
+  <app-menunav></app-menunav>
+</header>
 
-  <header>
-    <app-menunav></app-menunav>
-  </header>
-  
+<button class="voice-toggle" (click)="toggleVoice()">
+  {{ isVoiceEnabled ? 'Silenciar voz' : 'Activar voz' }}
+</button>

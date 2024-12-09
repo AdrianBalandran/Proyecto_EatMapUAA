@@ -29,29 +29,35 @@ export class VistaproductosComponent {
   }
 
   buscar() {
+    // Limpia los resultados y el mensaje de error al iniciar la búsqueda
+    this.resultados = [];
+    this.mensajeError = '';
+  
     if (!this.query.trim()) {
       this.mensajeError = 'Por favor, escribe algo para buscar.';
-      this.resultados = [];
       return;
     }
   
     this.busquedaService.buscar(this.query, this.filtro).subscribe(
       (data) => {
-        // console.log('Datos recibidos:', data); // Verifica la estructura aquí
         if (data.length === 0) {
+          // Muestra mensaje de error si no hay resultados
           this.mensajeError = `No está disponible "${this.query}" por el momento.`;
           this.resultados = [];
         } else {
+          // Muestra los resultados si hay datos
           this.mensajeError = '';
           this.resultados = data;
         }
       },
       (error) => {
+        // Muestra mensaje de error si ocurre un fallo en la solicitud
         this.mensajeError = `No está disponible "${this.query}" por el momento.`;
         console.error(error);
       }
     );
   }
+  
   
 }
 
