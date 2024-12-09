@@ -4,11 +4,13 @@ import { MenunavComponent } from "../menunav/menunav.component";
 import { BusquedaService } from '../busqueda.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { VistainfoComponent } from '../vistainfo/vistainfo.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-vistaproductos',
   standalone: true,
-  imports: [FooterbajoComponent, MenunavComponent, FormsModule, CommonModule],
+  imports: [FooterbajoComponent, MenunavComponent, FormsModule, CommonModule, VistainfoComponent, RouterModule],
   templateUrl: './vistaproductos.component.html',
   styleUrl: './vistaproductos.component.css'
 })
@@ -48,6 +50,7 @@ export class VistaproductosComponent {
           // Muestra los resultados si hay datos
           this.mensajeError = '';
           this.resultados = data;
+          console.log(this.resultados); 
         }
       },
       (error) => {

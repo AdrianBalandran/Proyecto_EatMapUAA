@@ -1,4 +1,4 @@
-.body, .nombre, .sub, .sub1, .icon, .value, .tipo, .subody, .cafe, .sucu, .login{
+.body, .nombre, .sub, .sub1, .icon, .value, .tipo, .subody, .cafe, .sucu, .login, .logout{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
 .body {
     background-color: white;
     width: 100%;
-    height: 600px;
+    height: 800px;
     flex-wrap: wrap;
 }
 .subody{
@@ -15,7 +15,7 @@
 }
 
 .body1{
-    height: 900px;
+    height: 1000px;
 }
 
 .card{
@@ -140,6 +140,22 @@
     height: 100%;
 }
 
+.textocursor{
+    cursor: pointer;
+    background-color: white;
+    color: #FF4362;
+    text-decoration: none;
+}
+
+.card2{
+    background-color: #FF4362;
+    width: 400px;
+    height: 150px;
+    border: none;
+    position: relative;
+    border-radius: 35px;
+}
+
 .login{
     position: absolute;
     top: 200px;
@@ -149,9 +165,13 @@
     height: 50px;
     border-radius: 20px;
 }
-.textocursor{
-    cursor: pointer;
+
+.logout {
+    position: absolute;
+    top: 50px;
+    right: 50px;
     background-color: white;
-    color: #FF4362;
-    text-decoration: none;
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
 }

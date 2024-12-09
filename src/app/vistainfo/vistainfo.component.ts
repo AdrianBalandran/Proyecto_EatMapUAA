@@ -7,7 +7,7 @@ import { Usuario } from '../Interface/usuario';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterbajoComponent } from '../footerbajo/footerbajo.component';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-vistainfo',
@@ -27,7 +27,13 @@ export class VistainfoComponent {
   auth = false; 
 
 
-  constructor(private getusu: UsuariosGetService, private session: SessionManagementService){
+
+  constructor(private getusu: UsuariosGetService, private session: SessionManagementService, public activatedRoute: ActivatedRoute){
+    this.activatedRoute.params.subscribe(params => {
+      this.data.Id_Comida = params['id']; 
+      console.log(params['id']); 
+    })
+
     if(this.session.isAuthenticated()){
       this.auth = true; 
     }else{

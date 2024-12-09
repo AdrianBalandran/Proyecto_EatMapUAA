@@ -13,11 +13,11 @@ export const appRoutes: Routes = [
   { path: 'home', component: PantallainicioComponent }, // Ruta /home
   { path: 'login', component: LoginComponent },         // Ruta /login
   { path: 'logout', component: LogoutComponent },      // Ruta /logout
-  { path: 'vista', component: VistainfoComponent },      // Ruta /vista
   { path: 'vistaprod', component: VistaproductosComponent },     // Ruta /vistaprod 
   { path: 'mapa', component: MapalocComponent },     // Ruta /mapaloc
   { path: 'usuario', component: UsuariopagComponent },     // Ruta /usuario
   { path: 'pedidos', component: PedidosComponent },     // Ruta /pedidos
+  { path: 'vista/:id', component: VistainfoComponent}, 
   { path: '**', redirectTo: '/home' }                  // Ruta para páginas no encontradas
 ];
 

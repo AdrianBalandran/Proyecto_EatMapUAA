@@ -18,6 +18,10 @@ export class UsuariosGetService {
     this.http.post(url, users).subscribe(); 
   }
 
+  postNodeEntregado(url: string, data: any){
+    this.http.post(url, data).subscribe(); 
+  }
+
   getusuario(url: string, user: any): any {
     return this.http.post<any>(url, user);
   }

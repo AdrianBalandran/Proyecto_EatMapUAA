@@ -99,6 +99,11 @@ p, .recodigo{
     height: 60px;
     position: absolute;
     /* background-color: lawngreen; */
+    text-align: center;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .comida p{
     color: #FF4362;
@@ -132,6 +137,29 @@ p, .recodigo{
     position: absolute;
     /* background-color: lawngreen; */
 }
+.recogido1{
+    top: 175px;
+    left: 20px;
+    width: 280px;
+    height: 30px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #FF4362;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.recogido1 p{
+    margin: auto auto;
+    color: white;
+}
+
+.recogido1:hover{
+    background-color: black;
+}
+
 
 .recogido{
     top: 175px;
@@ -162,6 +190,7 @@ p, .recodigo{
     justify-content: center;
     align-items: center;
 }
+
 .norecogido p{
     margin: auto auto;
     padding: auto auto;
@@ -180,6 +209,14 @@ p, .recodigo{
 }
 .sucursal{
     bottom: 60px;
+    right: 10px;
+    width: 160px;
+    height: 30px;
+    position: absolute;
+    /* background-color: lawngreen; */
+}
+.nombre{
+    bottom: 70px;
     right: 10px;
     width: 160px;
     height: 30px;

@@ -15,15 +15,21 @@
                         <div class="espera"><p>Espera {{pedido.Tiempo}} min</p></div>
                         <div class="fecha"><p>{{pedido.Fecha}}</p></div>
                         @if(pedido.Pagado == "N"){
-                            <div class="recogido"><p>No recogido</p></div>
-                        }@else{
-                            <div class="norecogido"><p>Recogido</p></div>
+                            @if(flagencargado){
+                                <div class="recogido1" (click)="pedidoEntregado(pedido.Orden)"><p>Entregado</p></div>
+                            }@else{
+                                <div class="recogido"><p>No recogido</p></div>
+                            }
                         }
                         <div class="imgcafeteria">
                             <img src="/assets/Imagenes/casa.png" alt="Cafetería">
                         </div>
-                        <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
-                        <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                        @if(flagencargado){
+                            <div class="nombre"><p>{{pedido.NombreUsuario}}</p></div>
+                        }@else{
+                            <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
+                            <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                        }
                         <div class="tipo">
                             @if(pedido.Tipo_pago == "T"){
                                 <p>Tarjeta</p>
@@ -39,7 +45,6 @@
                 <div class="nohay"><p>No hay pedidos en espera</p></div>
             </div>
         }
-
     </div>
 
     <div class="pasados">
@@ -65,8 +70,12 @@
                     <div class="imgcafeteria">
                         <img src="/assets/Imagenes/casa.png" alt="Cafetería">
                     </div>
-                    <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
-                    <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                    @if(flagencargado){
+                        <div class="nombre"><p>{{pedido.NombreUsuario}}</p></div>
+                    }@else{
+                        <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
+                        <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
+                    }
                     <div class="tipo">
                         @if(pedido.Tipo_pago == "T"){
                             <p>Tarjeta</p>

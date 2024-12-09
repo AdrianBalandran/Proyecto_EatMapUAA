@@ -24,9 +24,11 @@ export class UsuariopagComponent {
   usuario!: Usuario;
   encargado!: any;
 
-
-
   constructor(private session: SessionManagementService, private getusu: UsuariosGetService){
+    this.actualizar(); 
+  }
+
+  actualizar(){
     if(this.session.isAuthenticated()){
       this.auth = true; 
       this.user = {Email: this.session.getSession()}; 
@@ -40,10 +42,18 @@ export class UsuariopagComponent {
             this.encargado = JSON.parse(JSON.stringify(res));
             this.flagencargado = true; 
           });
+        }else{
+          this.flagencargado = false; 
         }
       });
-
+    }else{
+      this.auth = false; 
     }
+  }
+
+  salir(){
+    this.session.endSession(); 
+    this.actualizar(); 
   }
 
 }

@@ -24,32 +24,9 @@ export class PedidosComponent {
 
   
   constructor(private session: SessionManagementService, private getusu: UsuariosGetService){
-    if(this.session.isAuthenticated()){
-      this.auth = true; 
-      this.id = {Id_Usuario: this.session.getSessionId()}; 
-      const urlAPII: string = "http://localhost:3000/pedidos"; 
-      const urlAPIII: string = "http://localhost:3000/usuario/get"; 
-      const urlAPI: string = "http://localhost:3000/usuario/getsuyca"; 
-      let user = {Email: this.session.getSession()}; 
-      let usuario!: Usuario; 
-      this.getusu.getusuario(urlAPIII, user).subscribe((res: any) => {
-        usuario = JSON.parse(JSON.stringify(res));
-        if(usuario.Tipo == "Encargado"){
-          this.getusu.getusuario(urlAPI, user).subscribe((res: any) => {
-            this.encargado = JSON.parse(JSON.stringify(res));
-            this.flagencargado = true; 
-            console.log(this.encargado); 
-          });
-        }
-      });
-
-      this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {
-        this.pedidos = JSON.parse(JSON.stringify(res)); 
-        this.tamano = this.pedidos.length; 
-        this.NoPagados = this.separarpedidos();
-      });
-    }
+    this.actualizar(); 
   }
+
 
   separarpedidos(): Number{
     let i = 0; 
@@ -60,4 +37,43 @@ export class PedidosComponent {
     }
     return i; 
   }
+
+  pedidoEntregado(idOrden: any){
+    let orden = {
+      Orden: idOrden
+    }
+    const urlAPI: string = "http://localhost:3000/pedido/entregado"; 
+    this.getusu.postNodeEntregado(urlAPI, orden);
+    this.actualizar(); 
+  }
+
+  actualizar(){
+    if(this.session.isAuthenticated()){
+      this.auth = true; 
+      this.id = {Id_Usuario: this.session.getSessionId()}; 
+      const urlAPII: string = "http://localhost:3000/pedidos"; 
+      const urlAPIII: string = "http://localhost:3000/usuario/get"; 
+      let user = {Email: this.session.getSession()}; 
+      let usuario!: Usuario; 
+      this.getusu.getusuario(urlAPIII, user).subscribe((res: any) => {
+        usuario = JSON.parse(JSON.stringify(res));
+        if(usuario.Tipo == "Encargado"){
+          this.flagencargado = true; 
+          const urlAPII: string = "http://localhost:3000/pedidos/getEnc"; 
+          this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {
+            this.pedidos = JSON.parse(JSON.stringify(res)); 
+            this.tamano = this.pedidos.length; 
+            this.NoPagados = this.separarpedidos();
+          });
+        }else{
+          this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {
+            this.pedidos = JSON.parse(JSON.stringify(res)); 
+            this.tamano = this.pedidos.length; 
+            this.NoPagados = this.separarpedidos();
+          });
+        }
+      });
+    }
+  }
 }
+
