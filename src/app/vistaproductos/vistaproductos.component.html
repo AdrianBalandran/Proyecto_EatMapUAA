@@ -97,7 +97,7 @@
   <div *ngFor="let resultado of resultados" class="resultado">
     <!-- Bloque específico para el filtro "comida" -->
      <!-- <a [routerLink]="['/vista', resultado.Id_Comida]"> -->
-    <ng-container *ngIf="filtro === 'comida'">
+    <div *ngIf="filtro === 'comida'" [routerLink]="['/vista', resultado.Id_Comida]">
       <h3 [routerLink]="['/vista', resultado.Id_Comida]">{{ resultado.Nombre }}</h3>
       <p><strong>Precio:</strong> $ {{ resultado.Precio }}</p>
       <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
@@ -108,7 +108,7 @@
           {{ disp.Cafeteria }} - {{ disp.Sucursal }}
         </li>
       </ul>
-    </ng-container>
+    </div>
   <!-- </a> -->
 
     <!-- Bloque específico para el filtro "cafeteria" -->
@@ -126,9 +126,9 @@
     </ng-container>
 
     <!-- Bloque específico para el filtro "ingrediente" -->
-    <ng-container *ngIf="filtro === 'ingrediente'">
+    <div *ngIf="filtro === 'ingrediente'" [routerLink]="['/vista', resultado.Id_Comida]">
 
-        <h3 [routerLink]="['/vista', resultado.Id_Comida]">{{ resultado.Nombre }}</h3>
+        <h3>{{ resultado.Nombre }}</h3>
         <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
         <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
         <p><strong>Disponibilidad:</strong></p>
@@ -140,7 +140,7 @@
           </li>
         </ul>
 
-    </ng-container>
+    </div>
   </div>
 </section>
 

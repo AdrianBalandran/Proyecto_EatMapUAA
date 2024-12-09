@@ -86,6 +86,7 @@
   
   .resultado:hover {
     transform: translateY(-5px);
+    cursor: pointer;
   }
   
   .resultado p {
@@ -653,9 +654,7 @@
   }
 }
 
-h3{
-  cursor: pointer;
-}
+
 
   
   
