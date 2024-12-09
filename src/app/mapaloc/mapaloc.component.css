@@ -5,3 +5,22 @@
     top: 0;
     left: 0;
 }
+
+.voice-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Asegura que el botón esté sobre el mapa */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.voice-toggle:hover {
+    background-color: #0056b3;
+}
