@@ -43,14 +43,14 @@
 
 .ul .li .svg:hover {
   transition: 0.1s;
-  color: rgb(235, 40, 176);
+  color: #ff657f;
   position: relative;
   margin-top: -4px;
   opacity: 100%;
 }
 
 .radio:checked + label .li .svg {
-  color: rgb(235, 40, 176);
+  color: #ff657f;
   fill-rule: evenodd;
 }
 
