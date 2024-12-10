@@ -64,61 +64,124 @@
 
   /* Tarjeta para mostrar contenido */
 
-  .resultados {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Centra los elementos horizontalmente */
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 0 10px; /* Ajusta el espaciado en los márgenes laterales */
-    width: 100%; /* Asegura que ocupe todo el ancho disponible */
-  }
-  
-  .resultado {
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 280px; /* Tamaño fijo para cada tarjeta */
-    transition: transform 0.3s ease;
-    margin: 20px; /* Mantiene los márgenes entre tarjetas */
-  }
-  
-  .resultado:hover {
-    transform: translateY(-5px);
-    cursor: pointer;
-  }
-  
-  .resultado p {
-    margin: 10px 0;
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .resultado ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .resultado li {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .resultado h4 {
-    font-size: large;
-  }
-  
-  .comida-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  
+/* Estilo general para la sección de resultados */
+.resultados {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  flex-wrap: wrap;
+  gap: 30px; /* Aumenta el espacio entre los elementos */
+  padding: 0 20px; /* Ajusta el espaciado en los márgenes laterales */
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+/* Estilo de cada tarjeta de resultado */
+.resultado {
+  background-color: #ffffff; /* Color de fondo blanco */
+  border-radius: 16px; /* Bordes más redondeados */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Sombra suave y elegante */
+  padding: 20px;
+  width: 300px; /* Tamaño fijo para cada tarjeta */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Efectos de transición */
+  margin: 20px; /* Mantiene los márgenes entre tarjetas */
+  background-color: #fefefe; /* Color de fondo más claro para mejorar el contraste */
+  overflow: hidden;
+  border: 1px solid #ddd; /* Borde delgado y suave */
+  position: relative; /* Necesario para el efecto de borde animado */
+}
+
+/* Efecto al pasar el cursor sobre una tarjeta */
+.resultado:hover {
+  transform: translateY(-10px); /* Eleva la tarjeta al pasar el cursor */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15); /* Sombra más intensa */
+  cursor: pointer;
+  border-color: #ff657f; /* Borde de color rosa al pasar el cursor */
+}
+
+/* Título de los resultados */
+.resultado h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px; /* Tamaño de fuente ajustable */
+  font-weight: bold;
+  color: #333;
+  position: relative; /* Necesario para posicionar la línea debajo */
+  z-index: 1; /* Asegura que el texto esté por encima de la línea */
+}
+
+/* Línea animada debajo del título */
+.resultado:hover h3::after {
+  content: "";
+  position: absolute;
+  bottom: -8px; /* Ajusta la distancia hacia abajo */
+  left: 0;
+  width: 100%; /* La línea ocupará todo el ancho del título */
+  height: 5px; /* Aumenta el grosor de la línea */
+  background-color: #ff3b5c; /* Color más vibrante para la línea */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Añade una ligera sombra para profundidad */
+  transition: width 0.3s ease; /* Animación suave para la línea */
+}
+
+
+
+/* Estilo de los párrafos dentro de la tarjeta */
+.resultado p {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #444; /* Color de texto más oscuro */
+  line-height: 1.6; /* Mejora la legibilidad */
+  font-family: 'Arial', sans-serif; /* Tipografía más limpia */
+}
+
+/* Estilo de la lista dentro de la tarjeta */
+.resultado ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Estilo de los elementos de la lista */
+.resultado li {
+  font-size: 14px;
+  color: #777; /* Color más suave para los textos de la lista */
+  margin-bottom: 8px;
+  transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+/* Efecto hover sobre los elementos de la lista */
+.resultado li:hover {
+  color: #ff657f; /* Cambio de color al pasar el cursor */
+  cursor: pointer;
+}
+
+/* Estilo del título dentro de la tarjeta */
+.resultado h4 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Color fuerte para el título */
+  margin-bottom: 12px;
+  text-transform: uppercase; /* Título en mayúsculas para darle fuerza */
+  letter-spacing: 1px; /* Un pequeño espaciado entre letras */
+}
+
+/* Estilo de la tarjeta de comida */
+.comida-card {
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover en la tarjeta de comida */
+.comida-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra más fuerte */
+  transform: translateY(-8px); /* Eleva la tarjeta al pasar el cursor */
+  cursor: pointer;
+}
+
   
   /* Estilo del mensaje de error */
   .error-message {

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MapStateService } from '../map-state.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MenunavComponent } from "../menunav/menunav.component";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mapaloc',
@@ -21,7 +22,9 @@ export class MapalocComponent implements OnInit, OnDestroy {
   map!: google.maps.Map; // Declara la propiedad `map`
   lastInstructionIndex = 0; // Para recordar el índice de la última indicación dada
 
-  constructor(private mapStateService: MapStateService) {}
+  constructor(private mapStateService: MapStateService, private titleser: Title) {
+    titleser.setTitle("EatMapUAA | Mapa Sucursales");
+  }
 
   ngOnInit(): void {
     this.loadGoogleMapsScript().then(() => {
