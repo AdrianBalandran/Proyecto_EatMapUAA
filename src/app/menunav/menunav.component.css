@@ -1,31 +1,36 @@
 /* Menú flotante en la parte inferior central */
 #navbody {
-  width: 300px;
+  width: auto; /* El ancho se ajusta automáticamente según el contenido */
+  min-width: 300px; /* Ancho mínimo para que el contenedor tenga espacio suficiente */
   height: 60px;
   background-color: rgb(255, 255, 255);
   border-radius: 40px;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.041);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* Centrado de los iconos */
   position: fixed;
-  bottom: 20px; /* Ajusta la distancia desde la parte inferior */
-  left: 50%; /* Centra el menú en el eje horizontal */
+  bottom: 20px;
+  left: 50%; /* Centrado horizontal */
   transform: translateX(-50%); /* Compensa el 50% de su propio ancho para centrarlo */
-  z-index: 10; /* Asegura que el menú esté encima del mapa */
+  z-index: 10;
+  padding: 0; /* Eliminar cualquier padding en el contenedor */
+  margin: 0; /* Eliminar cualquier margen en el contenedor */
 }
 
 .ul {
   list-style: none;
-  width: 100%;
-  background-color: transparent;
   display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
+  justify-content: space-between; /* Aumenta el espacio entre los iconos */
+  margin: 0; /* Eliminar márgenes */
+  padding: 0; /* Eliminar padding */
+  width: 100%; /* El contenedor ocupa todo el ancho disponible */
+  gap: 20px; /* Aumentar espacio entre los iconos */
 }
 
 .ul .li {
   display: inline-block;
+  margin: 0; /* Eliminar márgenes en los elementos de lista */
 }
 
 .radio {
@@ -33,11 +38,11 @@
 }
 
 .svg {
-  width: 70px;
-  height: 70px;
+  width: 50px; /* Tamaño de los iconos */
+  height: 50px; /* Tamaño de los iconos */
   opacity: 80%;
   cursor: pointer;
-  padding: 13px 20px;
+  padding: 7px; /* Agregar un poco de padding para mejorar la apariencia */
   transition: 0.2s;
 }
 
@@ -58,7 +63,5 @@
   display: grid;
   justify-content: center;
   position: absolute;
-  margin: 40px;
+  margin: 0;
 }
-
-

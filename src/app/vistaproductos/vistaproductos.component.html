@@ -3,7 +3,7 @@
     <input
       type="text"
       class="search__input"
-      placeholder="Escribe el nombre de una comida, ingrediente o cafetería"
+      placeholder="Realiza una búsqueda de acuerdo con el filtro"
       [(ngModel)]="query"
       (keydown.enter)="buscar()"
     />
@@ -20,7 +20,7 @@
 </section>
 
 <!-- Filtro de las categoria de busqueda o bien contenido -->
- <div class="centfil">
+<div class="centfil">
   <div class="wrapper">
     <div class="option">
       <input checked value="comida" name="filtro" type="radio" id="comida" class="input" (change)="setFiltro('comida')"/>
@@ -41,12 +41,7 @@
       </div>
     </div>
   </div>
-
- </div>
-
-
-
-
+</div>
 
 <section *ngIf="mensajeError" class="error-message">
   <h3>{{ mensajeError }}</h3>
@@ -88,28 +83,26 @@
       </div>
     </div>
   </div>
-  
 </section>
-
 
 <section *ngIf="resultados.length > 0" class="resultados">
   <!-- Iteramos por cada resultado -->
   <div *ngFor="let resultado of resultados" class="resultado">
     <!-- Bloque específico para el filtro "comida" -->
-     <!-- <a [routerLink]="['/vista', resultado.Id_Comida]"> -->
     <div *ngIf="filtro === 'comida'" [routerLink]="['/vista', resultado.Id_Comida]">
-      <h3 [routerLink]="['/vista', resultado.Id_Comida]">{{ resultado.Nombre }}</h3>
+      <h3>{{ resultado.Nombre }}</h3>
       <p><strong>Precio:</strong> $ {{ resultado.Precio }}</p>
       <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
-      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
       <p><strong>Disponibilidad:</strong></p>
       <ul>
         <li *ngFor="let disp of resultado.Disponibilidad">
-          {{ disp.Cafeteria }} - {{ disp.Sucursal }}
+          <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
+          <strong>Local:</strong> {{ disp.NumeroLocal }} <br>
+          <strong>Edificio:</strong> {{ disp.Edificio }} <br> <hr>
         </li>
       </ul>
+      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
     </div>
-  <!-- </a> -->
 
     <!-- Bloque específico para el filtro "cafeteria" -->
     <ng-container *ngIf="filtro === 'cafeteria'">
@@ -120,26 +113,25 @@
           <h4>- {{ suc.NombreSucursal }}</h4>
           <b>Horario:</b> {{ suc.Horario }} <br>
           <b>Local:</b> {{ suc.NumeroLocal }} <br>
-          <b>Edificio:</b> {{ suc.Edificio }}
+          <b>Edificio:</b> {{ suc.Edificio }} <br><hr>
         </li>
       </ul>
     </ng-container>
 
     <!-- Bloque específico para el filtro "ingrediente" -->
     <div *ngIf="filtro === 'ingrediente'" [routerLink]="['/vista', resultado.Id_Comida]">
-
-        <h3>{{ resultado.Nombre }}</h3>
-        <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
-        <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
-        <p><strong>Disponibilidad:</strong></p>
-        <ul>
-          <li *ngFor="let disp of resultado.Disponibilidad">
-            <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
-            Local: {{ disp.NumeroLocal }} <br>
-            Edificio: {{ disp.Edificio }}
-          </li>
-        </ul>
-
+      <h3>{{ resultado.Nombre }}</h3>
+      <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
+      <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
+      <p><strong>Disponibilidad:</strong></p>
+      <ul>
+        <li *ngFor="let disp of resultado.Disponibilidad">
+          <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
+          <b>Local:</b> {{ disp.NumeroLocal }} <br>
+          <b>Edificio:</b> {{ disp.Edificio }} <br> <hr>
+        </li>
+      </ul>
+      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
     </div>
   </div>
 </section>

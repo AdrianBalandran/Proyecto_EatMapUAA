@@ -6,6 +6,7 @@ import { Router, RouterModule, Routes } from '@angular/router';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SessionManagementService } from '../service/session-management.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -22,7 +23,8 @@ export class LogoutComponent {
 
   urlAPI: string = "http://localhost:3000/usuarios"; 
 
-  constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService){
+  constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
+    titleser.setTitle("EatMapUAA | Registro")
     this.getusuarios(); 
   }
 

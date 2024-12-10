@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UsuariosGetService } from '../service/usuarios-get.service';
 import { SessionManagementService } from '../service/session-management.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pantallainicio',
@@ -16,7 +17,10 @@ import { SessionManagementService } from '../service/session-management.service'
 export class PantallainicioComponent {
   nombre: any = "";
   auth: boolean = false; 
-  constructor(private router: Router, private session: SessionManagementService){
+
+
+  constructor(private router: Router, private session: SessionManagementService, private titleser: Title){
+    titleser.setTitle("EatMapUAA | Inicio");
     if(this.session.isAuthenticated()){
       this.actualizar(true);
     }

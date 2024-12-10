@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FooterbajoComponent } from "../footerbajo/footerbajo.component";
 import { MenunavComponent } from "../menunav/menunav.component";
 import { BusquedaService } from '../busqueda.service';
@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { VistainfoComponent } from '../vistainfo/vistainfo.component';
 import { RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vistaproductos',
@@ -14,53 +15,60 @@ import { RouterModule } from '@angular/router';
   templateUrl: './vistaproductos.component.html',
   styleUrl: './vistaproductos.component.css'
 })
-export class VistaproductosComponent {
-  query: string = '';
-  filtro: string = 'comida'; // Valor predeterminado
-  resultados: any[] = [];
-  mensajeError: string = '';
+export class VistaproductosComponent implements OnInit {
+  query: string = '';  // Consulta del buscador
+  filtro: string = 'comida'; // Filtro predeterminado
+  resultados: any[] = []; // Resultados de la búsqueda
+  mensajeError: string = ''; // Mensaje de error
 
-  constructor(private busquedaService: BusquedaService) {}
+  constructor(private busquedaService: BusquedaService, private titelser: Title) {
+    titelser.setTitle("EatMapUAA | Vista Feel");
+  }
+
+  ngOnInit() {
+    // Ejecutar la búsqueda cuando el componente se carga por primera vez
+    this.buscar();
+  }
 
   // Resetear los resultados y el mensaje de error al cambiar el filtro
   setFiltro(filtro: string) {
-    this.query = '';
-    this.filtro = filtro;
-    this.resultados = [];
-    this.mensajeError = '';
+    this.query = '';  // Restablecer la consulta
+    this.filtro = filtro;  // Establecer el nuevo filtro
+    this.resultados = [];  // Limpiar los resultados
+    this.mensajeError = '';  // Limpiar el mensaje de error
+
+    // Ejecutar la búsqueda inmediatamente después de cambiar el filtro
+    this.buscar();
   }
 
   buscar() {
     // Limpia los resultados y el mensaje de error al iniciar la búsqueda
     this.resultados = [];
     this.mensajeError = '';
-  
-    if (!this.query.trim()) {
-      this.mensajeError = 'Por favor, escribe algo para buscar.';
-      return;
+
+    // Verifica si el filtro es "ingrediente" y no hay búsqueda activa
+    if (this.filtro === 'ingrediente' && this.query === '') {
+      this.mensajeError = 'Realiza una búsqueda por ingrediente para obtener resultados.';
+      return; // No hacer la llamada al servicio si está vacío el campo de búsqueda
     }
-  
+
     this.busquedaService.buscar(this.query, this.filtro).subscribe(
       (data) => {
         if (data.length === 0) {
-          // Muestra mensaje de error si no hay resultados
-          this.mensajeError = `No está disponible "${this.query}" por el momento.`;
+          // Si no hay resultados, mostrar mensaje de error
+          this.mensajeError = `No se encontraron resultados para "${this.query}".`;
           this.resultados = [];
         } else {
-          // Muestra los resultados si hay datos
-          this.mensajeError = '';
+          // Mostrar los resultados
           this.resultados = data;
-          console.log(this.resultados); 
+          this.mensajeError = '';
         }
       },
       (error) => {
-        // Muestra mensaje de error si ocurre un fallo en la solicitud
-        this.mensajeError = `No está disponible "${this.query}" por el momento.`;
+        // En caso de error, mostrar mensaje
+        this.mensajeError = `No se encontraron resultados para "${this.query}".`;
         console.error(error);
       }
     );
   }
-  
-  
 }
-

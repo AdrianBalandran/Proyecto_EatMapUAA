@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-usuariopag',
@@ -24,7 +25,8 @@ export class UsuariopagComponent {
   usuario!: Usuario;
   encargado!: any;
 
-  constructor(private session: SessionManagementService, private getusu: UsuariosGetService){
+  constructor(private session: SessionManagementService, private getusu: UsuariosGetService, private titleser: Title){
+    titleser.setTitle("EatMapUAA | Perfil de Usuario");
     this.actualizar(); 
   }
 
