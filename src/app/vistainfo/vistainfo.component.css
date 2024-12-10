@@ -4,13 +4,13 @@
     box-sizing: border-box;
 }
 
-p, li{
+p, li, option{
     letter-spacing: 2px;
     font-size: 17px;
 }
 
 .division, .titulo, .info1, .precio, .subdivision, .ingre, .ingre p, .tiempovalue, .preciovalue, .boton, .necesario,
-.input{
+.input, .select{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -194,6 +194,19 @@ p, li{
     background-color: black;
     border: none;
 }
+
+select{
+    background-color: #fd4263;
+    margin: 0px auto;
+    color: white;
+    border-radius: 20px;
+    height: 40px;   
+    border:none; 
+    text-align: center;
+    margin: 10px;
+    width: 230px;
+}
+
 
 @media (max-width: 750px) {
     .info{

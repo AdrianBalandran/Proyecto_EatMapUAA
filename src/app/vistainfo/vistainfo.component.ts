@@ -1,34 +1,37 @@
 import { Component } from '@angular/core';
 import { Comida } from '../Interface/comida';
 import { UsuariosGetService } from '../service/usuarios-get.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { SessionManagementService } from '../service/session-management.service';
 import { Usuario } from '../Interface/usuario';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterbajoComponent } from '../footerbajo/footerbajo.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-vistainfo',
   standalone: true,
-  imports: [FooterbajoComponent, HttpClientModule, CommonModule, RouterLink],
+  imports: [FooterbajoComponent, HttpClientModule, CommonModule, RouterLink, FormsModule],
   templateUrl: './vistainfo.component.html',
   styleUrl: './vistainfo.component.css'
 })
 export class VistainfoComponent {
   informacion: any; 
   comida!: Comida; 
+  tipoPago: String = 'E'; 
   data: any = {
     Id_Comida: 3
   }
   inicio = ""; 
   final = ""; 
   auth = false; 
+  sucursal: String = ""; 
+  Sucursales: any; 
 
 
-
-  constructor(private getusu: UsuariosGetService, private session: SessionManagementService, public activatedRoute: ActivatedRoute){
+  constructor(private getusu: UsuariosGetService, private session: SessionManagementService, public activatedRoute: ActivatedRoute, private router: Router){
     this.activatedRoute.params.subscribe(params => {
       this.data.Id_Comida = params['id']; 
       console.log(params['id']); 
@@ -44,8 +47,12 @@ export class VistainfoComponent {
       this.informacion = JSON.parse(JSON.stringify(res));
       this.comida = this.informacion.Comida; 
       this.getHorario(); 
-      console.log(this.inicio); 
-      console.log(this.final); 
+      let dataCafe = {Id_Cafeteria: this.comida.Id_Cafeteria}; 
+      const urlapi: string = "http://localhost:3000/cafeterias/sucursales"; 
+      this.getusu.getusuario(urlapi, dataCafe).subscribe((res:any) => {
+        this.Sucursales = JSON.parse(JSON.stringify(res));
+        this.sucursal = this.Sucursales[0].Id_Sucursal; 
+      }); 
     }); 
   }
 
@@ -65,7 +72,42 @@ export class VistainfoComponent {
       }
     }
   }
-  hacerPedido(){
-    
+
+  SetTipoPago(tipo: string) {
+    this.tipoPago = tipo;
+  }
+
+  pedir(){
+    let date: Date = new Date()  
+    let dia = date.getUTCDay();  
+    if(dia == 1 || dia == 7){
+      console.log("No hay servicio Sábado ni Domingo"); 
+    }
+    const pedido = {
+      Id_Usuario: this.session.getSessionId(), 
+      Id_Cafeteria: this.comida.Id_Cafeteria, 
+      Id_Sucursal: this.parseInt(this.sucursal),
+      Orden: 0,
+      Pagado: "N",
+      Tiempo: this.comida.TiempoPrepa,
+      Tipo_pago: this.tipoPago,
+      Fecha: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+    }
+    const Id_Comida = {
+      Pedido: pedido, 
+      Comida: {Id_Comida: this.data.Id_Comida}
+    }
+
+    const urlapi: string = "http://localhost:3000/pedido/agregar"; 
+    this.getusu.getusuario(urlapi, Id_Comida).subscribe((res:any) => {
+      console.log(JSON.parse(JSON.stringify(res))); 
+      if(JSON.parse(JSON.stringify(res)).Status){
+        this.router.navigate(['/pedidos/']); 
+      }
+    }); 
+
+  }
+  parseInt(data: String){
+    return Number(data); 
   }
 }

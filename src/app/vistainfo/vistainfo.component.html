@@ -22,26 +22,36 @@
         <div class="cafeteria">
             <p class="subtitulo negro">Cafetería</p>
             <p class="negro"> {{informacion.NombreCafeteria}} </p>
-            <p class="negro"> {{informacion.NombreSucursal}} </p>
-            <p class="negro">Edificio {{informacion.SucursalEdificio}}, Local {{informacion.Local}}</p>
-            <p class="negro">{{informacion.Horario}}</p>
+            <div class="select">
+                <select name="sucursales" id="sucursales" [(ngModel)]="sucursal">
+                @for(sucu of Sucursales; track sucu){
+                    <option value="{{sucu.Id_Sucursal}}">{{sucu.NombreSucursal}}</option>
+                }
+                </select>
+            </div>
+            @for(sucu of Sucursales; track sucu){
+                @if(sucu.Id_Sucursal === parseInt(sucursal)){
+                    <p class="negro">Edificio {{sucu.Edificio}}, Local {{sucu.Numero_Local}}</p>
+                    <p class="negro">{{sucu.Horario}}</p>  
+                }
+            }
         </div>
         <div class="necesario">
             <p class="negro">Tipo de pago</p>
             <div class="sub">
                 <div class="input">
-                    <input type="radio" value="Efectivo" name="tipoP" id="efectivo">    
+                    <input type="radio" value="Efectivo" name="tipoP" id="efectivo" (change)="SetTipoPago('E')" checked>    
                     <label for="efectivo">Efectivo</label>            
                 </div>
                 <div class="input">
-                    <input type="radio" value="Tarjeta" name="tipoP" id="tarjeta">
+                    <input type="radio" value="Tarjeta" name="tipoP" id="tarjeta" (change)="SetTipoPago('T')">
                     <label for="tarjeta">Tarjeta</label>            
                 </div>
             </div>
         </div>
         @if(auth){
             <div class="boton">
-                <button>Pedir</button>
+                <button (click)="pedir()">Pedir</button>
             </div>
         }
     </div>
