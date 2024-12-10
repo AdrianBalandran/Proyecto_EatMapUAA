@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-pantallainicio',
   standalone: true,
-  imports: [MenunavComponent, FooterbajoComponent,RouterLink],
+  imports: [MenunavComponent, FooterbajoComponent,RouterLink, CommonModule],
   templateUrl: './pantallainicio.component.html',
   styleUrl: './pantallainicio.component.css'
 })
