@@ -25,15 +25,17 @@
     <h3 class="header-title">Bienvenido a EatMapUAA</h3>
 
     <!-- Botón para cuando inicie sesión le pones la condicion uapa -->
-  <div class="header-button">
-    <button class="cta">
-      <span>Ingresar al Sistema</span>
-      <svg width="15px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
-    </button>
-  </div>
+  @if(auth){
+    <div class="header-button">
+      <button class="cta" [routerLink]="['/vistaprod/']">
+        <span>Ingresar al Sistema</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </div>
+  }
 
 
   </div>

@@ -7,7 +7,7 @@ import { UsuariosGetService } from '../service/usuarios-get.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usuariopag',
@@ -24,7 +24,7 @@ export class UsuariopagComponent {
   usuario!: Usuario;
   encargado!: any;
 
-  constructor(private session: SessionManagementService, private getusu: UsuariosGetService){
+  constructor(private session: SessionManagementService, private getusu: UsuariosGetService, private router: Router){
     this.actualizar(); 
   }
 
@@ -53,7 +53,7 @@ export class UsuariopagComponent {
 
   salir(){
     this.session.endSession(); 
-    this.actualizar(); 
+    this.router.navigate(['/home/']); 
   }
 
 }
