@@ -4,6 +4,7 @@ import { FooterbajoComponent } from "../footerbajo/footerbajo.component";
 import { SessionManagementService } from '../service/session-management.service';
 import { UsuariosGetService } from '../service/usuarios-get.service';
 import { Usuario } from '../Interface/usuario';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pedidos',
@@ -23,7 +24,8 @@ export class PedidosComponent {
   encargado!: any; 
 
   
-  constructor(private session: SessionManagementService, private getusu: UsuariosGetService){
+  constructor(private session: SessionManagementService, private getusu: UsuariosGetService, private Titleser: Title){
+    Titleser.setTitle("EatMapUAA | Pedidos");
     this.actualizar(); 
   }
 

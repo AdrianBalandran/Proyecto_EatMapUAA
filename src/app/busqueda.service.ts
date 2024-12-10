@@ -11,7 +11,10 @@ export class BusquedaService {
   constructor(private http: HttpClient) {}
 
   buscar(query: string, tipo: string): Observable<any[]> {
-    const params = new HttpParams().set('query', query).set('tipo', tipo);
+    let params = new HttpParams().set('tipo', tipo);
+    if (query.trim()) {
+      params = params.set('query', query.trim());
+    }
     return this.http.get<any[]>(this.apiUrl, { params });
   }
 }

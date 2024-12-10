@@ -6,6 +6,7 @@ import { Router, RouterModule, Routes } from '@angular/router';import { FormCont
 import { Injectable } from '@angular/core';
 import { SessionManagementService } from '../service/session-management.service';
 import { CommonModule } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,8 @@ export class LoginComponent {
 
     urlAPI: string = "http://localhost:3000/usuarios"; 
 
-    constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService){
+    constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
+      titleser.setTitle("EatMapUAA | Iniciar Sesión")
       this.getusuarios(); 
     }
 
