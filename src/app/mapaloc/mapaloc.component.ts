@@ -19,11 +19,13 @@ export class MapalocComponent implements OnInit, OnDestroy {
   directionsService!: google.maps.DirectionsService;
   directionsRenderer!: google.maps.DirectionsRenderer;
   isVoiceEnabled = true;
-  map!: google.maps.Map; // Declara la propiedad `map`
-  lastInstructionIndex = 0; // Para recordar el índice de la última indicación dada
+  map!: google.maps.Map;
+  userMarker!: google.maps.Marker | null; // Marcador para el usuario
+  lastInstructionIndex = 0;
+  activeInfoWindow!: google.maps.InfoWindow | null;
 
   constructor(private mapStateService: MapStateService, private titleser: Title) {
-    titleser.setTitle("EatMapUAA | Mapa Sucursales");
+    this.titleser.setTitle("EatMapUAA | Mapa Sucursales");
   }
 
   ngOnInit(): void {
@@ -48,7 +50,7 @@ export class MapalocComponent implements OnInit, OnDestroy {
 
       const script = document.createElement('script');
       script.id = scriptId;
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=geometry`;
       script.async = true;
       script.defer = true;
       script.onload = () => resolve();
@@ -67,10 +69,7 @@ export class MapalocComponent implements OnInit, OnDestroy {
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer = new google.maps.DirectionsRenderer({ map: this.map });
 
-    // Restaurar estado anterior si existe
     this.restoreState();
-
-    // Obtener ubicación del usuario y calcular ruta
     this.getUserLocation();
   }
 
@@ -80,6 +79,18 @@ export class MapalocComponent implements OnInit, OnDestroy {
         (position) => {
           const userPos = { lat: position.coords.latitude, lng: position.coords.longitude };
           this.map.setCenter(userPos);
+
+          if (this.userMarker) {
+            this.userMarker.setPosition(userPos);
+          } else {
+            this.userMarker = new google.maps.Marker({
+              position: userPos,
+              map: this.map,
+              icon: {
+                url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              },
+            });
+          }
 
           this.calculateNearestRoute(userPos);
         },
@@ -97,11 +108,9 @@ export class MapalocComponent implements OnInit, OnDestroy {
     let closestRoute = { distance: Infinity, location: null as any };
     const routeInstructions: google.maps.DirectionsStep[] = [];
 
-    // Limpiar marcadores previos en el mapa
     this.mapStateService.savedMarkers.forEach((marker) => marker.setMap(null));
     this.mapStateService.savedMarkers = [];
 
-    // Iterar sobre las ubicaciones guardadas en el servicio
     this.mapStateService.savedLocations.forEach((location) => {
       const request: google.maps.DirectionsRequest = {
         origin: userPos,
@@ -117,33 +126,38 @@ export class MapalocComponent implements OnInit, OnDestroy {
             closestRoute = { distance, location };
             this.directionsRenderer.setDirections(result);
 
-            // Guardar todas las instrucciones de la ruta para poder decidir cuándo dar indicaciones
-            routeInstructions.length = 0; // Limpiar instrucciones anteriores
+            routeInstructions.length = 0;
             result.routes[0].legs[0].steps.forEach((step) => routeInstructions.push(step));
 
-            // Actualizar las indicaciones de voz si es necesario
             this.checkAndSpeakInstruction(userPos, routeInstructions);
-            this.mapStateService.savedDirections = result; // Guardar ruta
+            this.mapStateService.savedDirections = result;
           }
-        } else {
-          console.error('Error calculando la ruta:', status);
         }
       });
 
-      // Agregar marcadores para ubicaciones fijas
       const marker = new google.maps.Marker({
         position: { lat: location.lat, lng: location.lng },
         map: this.map,
         title: location.name,
       });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<div><strong>${location.name}</strong></div>`,
+      });
+
+      marker.addListener('click', () => {
+        if (this.activeInfoWindow) this.activeInfoWindow.close();
+        infoWindow.open(this.map, marker);
+        this.activeInfoWindow = infoWindow;
+      });
+
       this.mapStateService.savedMarkers.push(marker);
     });
   }
 
   private checkAndSpeakInstruction(userPos: google.maps.LatLngLiteral, steps: google.maps.DirectionsStep[]): void {
-    if (!this.isVoiceEnabled || steps.length === 0) return;
+    if (!this.isVoiceEnabled || steps.length === 0 || this.lastInstructionIndex >= steps.length) return;
 
-    // Comparar la distancia a la próxima indicación
     const nextStep = steps[this.lastInstructionIndex];
     const nextStepPosition = nextStep.start_location;
 
@@ -152,23 +166,21 @@ export class MapalocComponent implements OnInit, OnDestroy {
       nextStepPosition
     );
 
-    // Solo hablar si el usuario está cerca de la siguiente instrucción
-    if (distanceToNextStep < 100) { // Umbral de 100 metros para dar una indicación
+    if (distanceToNextStep < 100) {
       const speech = window.speechSynthesis;
       const voices = speech.getVoices();
-      const spanishVoice = voices.find((voice) => voice.lang.includes('es')) || voices[0]; // Voz en español
+      const spanishVoice = voices.find((voice) => voice.lang.includes('es')) || voices[0];
 
       const utterance = new SpeechSynthesisUtterance(nextStep.instructions.replace(/<[^>]+>/g, ''));
       utterance.voice = spanishVoice;
       speech.speak(utterance);
 
-      // Avanzar al siguiente paso
       this.lastInstructionIndex++;
     }
   }
 
   private saveState(): void {
-    // El estado ya se guarda automáticamente en `mapStateService`
+    // Estado ya manejado
   }
 
   private restoreState(): void {
@@ -189,4 +201,3 @@ export class MapalocComponent implements OnInit, OnDestroy {
     }
   }
 }
-
