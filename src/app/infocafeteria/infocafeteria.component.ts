@@ -11,12 +11,14 @@ interface Sucursal {
   Horario: string | null;
   NumeroLocal: string | null;
   Edificio: string | null;
+  Telefono: string | null;
 }
 
 interface InformacionCafeteria {
   Nombre: string;
   Sucursales: Sucursal[];
 }
+
 
 @Component({
   selector: 'app-infocafeteria',
@@ -54,7 +56,7 @@ export class InfocafeteriaComponent implements OnInit {
   private cargarInformacionCafeteria(idCafeteria: number): void {
     this.cafeteriaService.getCafeteriaInfo(idCafeteria).subscribe({
       next: (data) => {
-        console.log('Datos recibidos:', data);
+        //console.log('Datos recibidos:', data);
         this.informacion = data;
       },
       error: (err) => {
@@ -64,5 +66,17 @@ export class InfocafeteriaComponent implements OnInit {
       },
     });
   }
+
+  // Método para construir el enlace de WhatsApp
+  getWhatsAppLink(telefono: string | null | undefined): string | null {
+    if (!telefono || typeof telefono !== 'string' || telefono.trim() === '' || telefono.toLowerCase() === 'null') {
+      return null; // Devuelve null si el teléfono no es válido
+    }
+    return `https://api.whatsapp.com/send?phone=${telefono}`;
+  }
+  
+
+
+
   
 }
