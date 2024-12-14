@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UsuariosGetService } from '../service/usuarios-get.service';
 import { Usuario } from '../Interface/usuario';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -18,7 +18,14 @@ import { Title } from '@angular/platform-browser';
 export class LoginComponent {
     private usuarios!: any; 
     private data: any[] | undefined
-
+    @ViewChild('passwordInput', { static: true }) passwordInput!: ElementRef<HTMLInputElement>;
+    isPasswordVisible = false;
+  
+    togglePasswordVisibility() {
+      this.isPasswordVisible = !this.isPasswordVisible;
+      const inputType = this.isPasswordVisible ? 'text' : 'password';
+      this.passwordInput.nativeElement.type = inputType;
+    }
 
     private user!: Usuario[]; 
     @Injectable() 
