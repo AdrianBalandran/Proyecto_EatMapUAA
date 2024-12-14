@@ -32,13 +32,13 @@
     display: inline-block;
     margin: 0; /* Eliminar márgenes en los elementos de lista */
   }
-
+/* 
   .ul{
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+   */
   .radio {
     display: none;
   }
@@ -52,11 +52,19 @@
     transition: 0.2s;
   }
   
-  .ul .li i:hover {
+
+  .icon {
+    cursor: pointer;
+    transition: 0.2s;
+    color: #4d5154;
+    position: relative;
+    top: 14px;
+  }
+  
+  .ul .li i.icon:hover {
     transition: 0.1s;
     color: #ff657f;
-    position: relative;
-    margin-top: -4px;
+    top: 10px;
     opacity: 100%;
     cursor: pointer;
   }
@@ -65,7 +73,7 @@
     transition: 0.1s;
     color: #ff657f;
     position: relative;
-    margin-top: -4px;
+    top: -4px;
     opacity: 100%;
   }
   
