@@ -70,7 +70,7 @@
   }
   
   .inputForm:focus-within {
-    border: 1.5px solid #2d79f3;
+    border: 1.5px solid #ff657f;
   }
   
   .flex-row {
@@ -148,7 +148,7 @@
   }
   
   .btn:hover {
-    border: 1px solid #2d79f3;
+    border: 1px solid #ff657f;
     ;
   }
   
