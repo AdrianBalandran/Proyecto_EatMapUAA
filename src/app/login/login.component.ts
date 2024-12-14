@@ -16,7 +16,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-    private usuarios!: Usuario[]; 
+    private usuarios!: any; 
     private data: any[] | undefined
 
 
@@ -31,7 +31,6 @@ export class LoginComponent {
 
     constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
       titleser.setTitle("EatMapUAA | Iniciar Sesión")
-      this.getusuarios(); 
     }
 
     loginForm = new FormGroup({
@@ -46,17 +45,9 @@ export class LoginComponent {
     });
   
 
- 
-    getusuarios(): void {
-      const urlAPI: string = "http://localhost:3000/usuarios"; 
-      this.getusu.getJSON(urlAPI).subscribe((res: any) => {
-        this.usuarios = JSON.parse(JSON.stringify(res));
-      });
-    }
-
     getconsole(): void{
       console.log(this.usuarios);
-      console.log(this.usuarios.length);
+      // console.log(this.usuarios.length);
       console.log(this.loginForm?.get('email')?.value); 
       console.log(this.loginForm?.get('contras')?.value); 
     }
@@ -67,28 +58,27 @@ export class LoginComponent {
         return; 
       }
       
-      let flagUser: boolean = false; 
-      let nombre: string = ""; 
-      let id: number = 0; 
       this.correo = this.loginForm?.get('email')?.value!;
       this.contra = this.loginForm?.get('contras')?.value!;
-      for(let usu of this.usuarios){
-        if(usu.Email == this.correo){
-          if(usu.Contrasena == this.contra){
-            flagUser = true; 
-            nombre = usu.Nombre;
-            id = usu.Id_Usuario; 
+
+      const urlAPI: string = "http://localhost:3000/login"; 
+      this.getusu.getusuario(urlAPI, {Correo: this.correo, Contrasena: this.contra}).subscribe((res: any) => {
+        this.usuarios = JSON.parse(JSON.stringify(res));
+        console.log(this.usuarios); 
+        if(this.usuarios.success){
+          this.session.endSession(); 
+          this.session.setSession(this.correo, this.usuarios.usuario.Nombre, this.usuarios.usuario.Id_Usuario);
+          if(this.usuarios.usuario.Tipo != "Cliente"){
+            this.router.navigate(['/usuario']);  
+          }else{
+            this.router.navigate(['/vistaprod']);  
           }
+          this.error = "Correcto";
         }
-      }
-      if(flagUser){
-        this.session.endSession(); 
-        this.session.setSession(this.correo, nombre, id);
-        this.router.navigate(['/vistaprod']);  
-        this.error = "Correcto";
-      }else{
+      }, (err: { message: String; }) => { 
         this.error = "Usuario o contraseña incorrecto.";
-      }
+      });
+
     }
 
     

@@ -17,7 +17,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './logout.component.css'
 })
 export class LogoutComponent {
-  private usuarios!: Usuario[]; 
+  private response!: any; 
   private crear = true; 
   error: String = ""; 
 
@@ -25,7 +25,6 @@ export class LogoutComponent {
 
   constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
     titleser.setTitle("EatMapUAA | Registro")
-    this.getusuarios(); 
   }
 
   registroForm = new FormGroup({
@@ -57,30 +56,17 @@ export class LogoutComponent {
   });
 
 
-  getusuarios(): void {
-    const urlAPI: string = "http://localhost:3000/usuarios"; 
-
-    this.getusu.getJSON(urlAPI).subscribe((res: any) => {
-      this.usuarios = JSON.parse(JSON.stringify(res));
-    });
-  }
 
   comprobarUsuario(): boolean{
     if(this.registroForm.invalid){
       this.error = "Los datos son incorrectos."; 
       return false; 
     }
-    for(let usu of this.usuarios){
-      if(usu.Email == this.registroForm?.get('correo')?.value!){
-        // console.log("No se puede crear la cuenta");
-        this.crear = false;  
-        this.error = "El correo ya fue utilizado."; 
-      }
-    }
+
     if(this.crear){
-      const urlAPISend: string = "http://localhost:3000/usuario/nuevo"; 
+      const urlAPISend: string = "http://localhost:3000/usuarios/crear"; 
       const user: Usuario = {
-        Id_Usuario: Number(this.usuarios[this.usuarios.length-1].Id_Usuario) +1, 
+        Id_Usuario: 0, 
         Nombre: this.registroForm?.get('nombre')?.value!,
         Primer_Apellido: this.registroForm?.get('primape')?.value!,
         Segundo_Apellido: this.registroForm?.get('segape')?.value!, 
@@ -90,10 +76,17 @@ export class LogoutComponent {
         Tipo: "Cliente", 
       }
 
-      this.session.endSession(); 
-      this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!, Number(this.usuarios[this.usuarios.length-1].Id_Usuario) +1);
-      this.getusu.postNode(urlAPISend, user);
-      this.router.navigate(['/vistaprod']);  
+      this.getusu.getusuario(urlAPISend, user).subscribe((res: any) => {
+        this.response = JSON.parse(JSON.stringify(res));
+        console.log(this.response); 
+        if(this.response.success){
+          this.session.endSession(); 
+          this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!, this.response.usuario);
+          this.router.navigate(['/vistaprod']);  
+        }
+      }, (err: { message: String; }) => { 
+        this.error = "Ya se ha utilizado este correo.";
+      });
     }
     return false; 
   }

@@ -49,6 +49,15 @@ export class PedidosComponent {
     this.actualizar(); 
   }
 
+  pedidoCancelado(idOrden: any){
+    let orden = {
+      Orden: idOrden
+    }
+    const urlAPI: string = "http://localhost:3000/pedido/cancelado"; 
+    this.getusu.postNodeEntregado(urlAPI, orden);
+    this.actualizar(); 
+  }
+
   actualizar(){
     if(this.session.isAuthenticated()){
       this.auth = true; 

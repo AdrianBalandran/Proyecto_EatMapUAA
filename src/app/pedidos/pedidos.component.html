@@ -6,7 +6,7 @@
         @if(NoPagados != 0){
             @for(pedido of pedidos; track pedido){
                 @if(pedido.Pagado == "N"){
-                    <div class="tarjeta">
+                    <div class="tarjeta tarjetaG">
                         <div class="imgcomida">
                             <img src="/assets/Imagenes/comida.png" alt="Comida">                        
                         </div>
@@ -21,6 +21,7 @@
                                 <div class="recogido"><p>No recogido</p></div>
                             }
                         }
+                        <div class="cancelado1" (click)="pedidoCancelado(pedido.Orden)"><p>Cancelar</p></div>
                         <div class="imgcafeteria">
                             <img src="/assets/Imagenes/casa.png" alt="Cafetería">
                         </div>
@@ -64,6 +65,8 @@
                     <div class="fecha"><p>{{pedido.Fecha}}</p></div>
                     @if(pedido.Pagado == "N"){
                         <div class="recogido"><p>No recogido</p></div>
+                    }@else if(pedido.Pagado == "C"){
+                        <div class="cancelado"><p>Cancelado</p></div>
                     }@else{
                         <div class="norecogido"><p>Recogido</p></div>
                     }

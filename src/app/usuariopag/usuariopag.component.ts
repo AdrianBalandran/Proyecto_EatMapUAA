@@ -9,11 +9,12 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { MenuadminComponent } from "../menuadmin/menuadmin.component";
 
 @Component({
   selector: 'app-usuariopag',
   standalone: true,
-  imports: [FooterbajoComponent, MenunavComponent, HttpClientModule, CommonModule, RouterLink],
+  imports: [FooterbajoComponent, MenunavComponent, HttpClientModule, CommonModule, RouterLink, MenuadminComponent],
   templateUrl: './usuariopag.component.html',
   styleUrl: './usuariopag.component.css'
 })
@@ -25,9 +26,11 @@ export class UsuariopagComponent {
   usuario!: Usuario;
   encargado!: any;
 
+
   constructor(private session: SessionManagementService, private getusu: UsuariosGetService, private titleser: Title, private router: Router){
     titleser.setTitle("EatMapUAA | Perfil de Usuario");
-    this.actualizar(); 
+    this.actualizar();
+     
   }
 
   actualizar(){

@@ -1,0 +1,40 @@
+.div{
+    width: 100%; 
+    height: 600px;
+    background-color: beige;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+.div, .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.titulo{
+    background-color: aqua;
+    width: 100%;
+    height: 100px;
+}
+
+.tit{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    letter-spacing: 2px;
+    margin: auto;
+}
+
+/* <div class="nombres">
+        
+</div>
+<div class="tipo">
+
+</div>
+<div class="encargado">
+
+</div>
+<div class="enviar">
+
+</div> */
