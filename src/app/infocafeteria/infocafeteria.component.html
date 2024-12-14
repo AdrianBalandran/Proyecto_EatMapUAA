@@ -23,37 +23,40 @@
   
         <!-- Lista de sucursales -->
         <section class="branch-container">
-          <ul class="branch-list">
-            <li *ngFor="let sucursal of informacion.Sucursales" class="branch-item">
-              <div class="branch-card">
-                <h3 class="branch-name">
-                  <i class="fas fa-store"></i> {{ sucursal.NombreSucursal }}
-                </h3>
-                <p class="branch-detail">
-                  <i class="fas fa-clock"></i> <strong>Horario:</strong> {{ sucursal.Horario }}
-                </p>
-                <p class="branch-detail">
-                  <i class="fas fa-building"></i> <strong>Edificio:</strong> {{ sucursal.Edificio }}
-                </p>
-                <p class="branch-detail">
-                  <i class="fas fa-map-marker-alt"></i> <strong>Local:</strong> {{ sucursal.NumeroLocal }}
-                </p>
-              </div>
-            </li>
-          </ul>
-        </section>
+            <ul class="branch-list">
+              <li *ngFor="let sucursal of informacion.Sucursales" class="branch-item">
+                <div class="branch-card">
+                  <h3 class="branch-name">
+                    <i class="fas fa-store"></i> {{ sucursal.NombreSucursal }}
+                  </h3>
+                  <p class="branch-detail">
+                    <i class="fas fa-clock"></i> <strong>Horario:</strong> {{ sucursal.Horario }}
+                  </p>
+                  <p class="branch-detail">
+                    <i class="fas fa-building"></i> <strong>Edificio:</strong> {{ sucursal.Edificio }}
+                  </p>
+                  <p class="branch-detail">
+                    <i class="fas fa-map-marker-alt"></i> <strong>Local:</strong> {{ sucursal.NumeroLocal }}
+                  </p>
+                  <p class="branch-detail">
+                    <i class="fas fa-phone"></i> <strong>Teléfono:</strong> {{ sucursal.Telefono?.trim() || 'No disponible' }}
+                  </p>
+          
+                  <!-- Botón de WhatsApp -->
+                  <a *ngIf="getWhatsAppLink(sucursal.Telefono)" [href]="getWhatsAppLink(sucursal.Telefono)" class="btn-wsp" target="_blank">
+                    <i class="icon-whatsapp"></i> Contactar
+                  </a>
+                  
+                </div>
+              </li>
+            </ul>
+          </section>
+          
+          
       </div>
     </div>
 
-    <!-- Funcion de la api de whatsapp -->
-    <div class="botonw">
-
-        <a href="https://api.whatsapp.com/send?phone=4492732979"
-        class="btn-wsp" target="_blank">
-            <i class="icon-whatsapp"></i>
-    </a>
-    
-    </div>
+ 
     
   </ng-template>
   
