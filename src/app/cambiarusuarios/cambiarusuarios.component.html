@@ -2,19 +2,45 @@
     <div class="titulo">
         <p class="tit">Administrar Usuarios</p>
     </div>
-    <div class="nombres">
-        <select name="nombres" id="nombres">
-            <option value="1">Laura Daniela Flores</option>
-        </select>
-    </div>
-    <div class="tipo">
-
-    </div>
-    <div class="encargado">
-
-    </div>
-    <div class="enviar">
-
+    <div class="contenedor">
+        <div class="encargado">
+            <div class="nombres">
+                <select name="nombres" id="nombres" (change)="onChangeNombre($event.target)">
+                    @for(usu of usuarios; track usu){
+                        <option value="{{usu.Id_Usuario}}">{{usu.Nombre_Completo}}</option>
+                    }
+                </select>
+            </div>
+            <div class="tipo">
+                <select name="tipo" id="tipo" (change)="onChangeTipo($event.target)">
+                    <option value="Admin">Admin</option>
+                    <option value="Encargado">Encargado</option>
+                    <option value="Cliente">Cliente</option>
+                </select>
+            </div>
+        </div>
+        @if(tipo === "Encargado"){
+            <div class="encargado">
+                <div class="cafeteria">
+                    <select name="cafeteria" id="cafeteria" (change)="onChangeCafeteria($event.target)">
+                        @for(cafe of cafeterias; track cafe){
+                            <option value="{{cafe.Id_Cafeteria}}">{{cafe.Nombre_Cafeteria}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="sucursal">
+                    <select name="sucursal" id="sucursal" (change)="onChangeSucursal($event.target)">
+                        @for(sucu of getSucu(); track sucu){
+                            <option value="{{sucu.Id_Sucursal}}">{{sucu.Nombre_Sucursal}}</option>
+                        }                    
+                    </select>
+                </div>
+            </div>
+        }
+        <div class="mensaje">
+            <p>{{message}}</p>
+        </div>
+        <button class="enviar" (click)="cambiarUsuario()">Cambiar</button>
     </div>
 </div>
 

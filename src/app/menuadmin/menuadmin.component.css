@@ -32,6 +32,12 @@
     display: inline-block;
     margin: 0; /* Eliminar márgenes en los elementos de lista */
   }
+
+  .ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .radio {
     display: none;
@@ -44,6 +50,15 @@
     cursor: pointer;
     padding: 7px; /* Agregar un poco de padding para mejorar la apariencia */
     transition: 0.2s;
+  }
+  
+  .ul .li i:hover {
+    transition: 0.1s;
+    color: #ff657f;
+    position: relative;
+    margin-top: -4px;
+    opacity: 100%;
+    cursor: pointer;
   }
   
   .ul .li .svg:hover {
