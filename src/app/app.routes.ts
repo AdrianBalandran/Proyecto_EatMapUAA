@@ -8,6 +8,7 @@ import { VistainfoComponent } from './vistainfo/vistainfo.component';
 import { UsuariopagComponent } from './usuariopag/usuariopag.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { CambiarusuariosComponent } from './cambiarusuarios/cambiarusuarios.component';
+import { InfocafeteriaComponent } from './infocafeteria/infocafeteria.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la raíz a /home
@@ -20,6 +21,7 @@ export const appRoutes: Routes = [
   { path: 'pedidos', component: PedidosComponent },     // Ruta /pedidos
   { path: 'cambiar', component: CambiarusuariosComponent },     // Ruta /pedidos
   { path: 'vista/:id', component: VistainfoComponent}, 
+  { path: 'cafeteria/:id', component: InfocafeteriaComponent },
   { path: '**', redirectTo: '/home' }                  // Ruta para páginas no encontradas
 ];
 

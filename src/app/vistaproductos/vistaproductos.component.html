@@ -105,7 +105,7 @@
     </div>
 
     <!-- Bloque específico para el filtro "cafeteria" -->
-    <ng-container *ngIf="filtro === 'cafeteria'">
+    <div *ngIf="filtro === 'cafeteria'" [routerLink]="['/cafeteria', resultado.Id_Cafeteria]">
       <h3>{{ resultado.Nombre }}</h3>
       <p><strong>Sucursales:</strong></p>
       <ul>
@@ -116,7 +116,8 @@
           <b>Edificio:</b> {{ suc.Edificio }} <br><hr>
         </li>
       </ul>
-    </ng-container>
+    </div>
+    
 
     <!-- Bloque específico para el filtro "ingrediente" -->
     <div *ngIf="filtro === 'ingrediente'" [routerLink]="['/vista', resultado.Id_Comida]">
