@@ -96,12 +96,12 @@
 
 /* Estilo cuando el ícono está activo (cambio de color) */
 .btn-eye.active svg {
-  fill: #2d79f3; /* Cambia el color del ícono cuando está activo */
+  fill: #ff657f; /* Cambia el color del ícono cuando está activo */
 }
 
 /* Ajuste para que el ícono se alinee correctamente con el input */
 .inputForm:focus-within {
-  border: 1.5px solid #2d79f3; /* Color del borde al enfocar el input */
+  border: 1.5px solid #ff657f; /* Color del borde al enfocar el input */
 }
 
 .flex-row {
@@ -183,7 +183,7 @@
 }
 
 .btn:hover {
-  border: 1px solid #2d79f3;
+  border: 1px solid #ff657f;
 }
 
 .containerlogin {
