@@ -54,6 +54,7 @@ export class VistaproductosComponent implements OnInit {
 
     this.busquedaService.buscar(this.query, this.filtro).subscribe(
       (data) => {
+        // console.log('Datos recibidos del backend:', data); // Verifica que incluya Id_Cafeteria
         if (data.length === 0) {
           // Si no hay resultados, mostrar mensaje de error
           this.mensajeError = `No se encontraron resultados para "${this.query}".`;
