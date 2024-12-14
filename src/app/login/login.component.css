@@ -1,163 +1,193 @@
-.contenido{
+.contenido {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/Imagenes/newfondo.jpg') no-repeat center/cover;
-    /* background-color: #FF4362; */
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.loginimg{
+.loginimg {
   display: grid;
   justify-content: center;
 }
 
-.contenido2{
+.contenido2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
   text-align: start;
   margin-top: 140px;
-
 }
+
 /* Diseño login */
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #ffffff;
-    padding: 30px;
-    width: 450px;
-    border-radius: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  ::placeholder {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-  
-  .form button {
-    align-self: flex-end;
-  }
-  
-  .flex-column > label {
-    color: #151717;
-    font-weight: 600;
-  }
-  
-  .inputForm {
-    border: 1.5px solid #ecedec;
-    border-radius: 10px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .input {
-    margin-left: 10px;
-    border-radius: 10px;
-    border: none;
-    width: 85%;
-    height: 100%;
-  }
-  
-  .input:focus {
-    outline: none;
-  }
-  
-  .inputForm:focus-within {
-    border: 1.5px solid #2d79f3;
-  }
-  
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    justify-content: space-between;
-  }
-  
-  .flex-row > div > label {
-    font-size: 14px;
-    color: black;
-    font-weight: 400;
-  }
-  
-  .span {
-    font-size: 14px;
-    margin-left: 5px;
-    color: #FF4362;
-    font-weight: 500;
-  }
-  
-  .span-cursor {
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 30px;
+  width: 450px;
+  border-radius: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-  .button-submit {
-    margin: 20px 0 10px 0;
-    background-color: #151717;
-    border: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 10px;
-    height: 50px;
-    width: 100%;
-    cursor: pointer;
-  }
-  .button-submit-error {
-    margin: 20px 0 10px 0;
-    background-color: #FF4362;
-    border: none;
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 10px;
-    height: 50px;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .button-submit:hover {
-    background-color: #252727;
-  }
-  
-  .p {
-    text-align: center;
-    color: black;
-    font-size: 14px;
-    margin: 5px 0;
-  }
-  
-  .btn {
-    margin-top: 10px;
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    gap: 10px;
-    border: 1px solid #ededef;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .btn:hover {
-    border: 1px solid #2d79f3;
-    ;
-  }
-  
-      
-  .containerlogin{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+::placeholder {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
+.form button {
+  align-self: flex-end;
+}
+
+.flex-column > label {
+  color: #151717;
+  font-weight: 600;
+}
+
+.inputForm {
+  border: 1px solid #ccc; /* Asegura un borde uniforme */
+  border-radius: 5px; /* Bordes redondeados para consistencia */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  position: relative; /* Para que el ícono se pueda alinear correctamente */
+}
+
+.input {
+  margin: 0; /* Elimina márgenes */
+  border: none; /* Elimina el borde del input */
+  width: 100%; /* El input ocupa todo el ancho disponible */
+  height: 100%;
+  padding: 0 10px; /* Agrega un poco de relleno para el texto */
+  box-sizing: border-box; /* Asegura que el padding no altere el tamaño del input */
+  font-size: 16px; /* Tamaño de fuente consistente */
+}
+
+.input:focus {
+  outline: none; /* Elimina el borde de enfoque */
+}
+
+.btn-eye {
+  position: absolute;
+  right: 10px; /* Coloca el botón en el lado derecho del input */
+  background: transparent; /* Fondo transparente para el botón */
+  border: none; /* Elimina el borde del botón */
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transition: transform 0.2s ease-in-out; /* Agrega la animación de hover */
+}
+
+.btn-eye svg {
+  width: 20px; /* Tamaño consistente con el input */
+  height: 20px;
+  fill: #151717; /* Color del icono */
+}
+
+/* Efecto hover para el ícono */
+.btn-eye:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño del ícono al pasar el ratón */
+}
+
+/* Estilo cuando el ícono está activo (cambio de color) */
+.btn-eye.active svg {
+  fill: #2d79f3; /* Cambia el color del ícono cuando está activo */
+}
+
+/* Ajuste para que el ícono se alinee correctamente con el input */
+.inputForm:focus-within {
+  border: 1.5px solid #2d79f3; /* Color del borde al enfocar el input */
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.flex-row > div > label {
+  font-size: 14px;
+  color: black;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #FF4362;
+  font-weight: 500;
+}
+
+.span-cursor {
+  cursor: pointer;
+}
+
+.button-submit {
+  margin: 20px 0 10px 0;
+  background-color: #151717;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit-error {
+  margin: 20px 0 10px 0;
+  background-color: #FF4362;
+  border: none;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 10px;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button-submit:hover {
+  background-color: #252727;
+}
+
+.p {
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.btn {
+  margin-top: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  gap: 10px;
+  border: 1px solid #ededef;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+  border: 1px solid #2d79f3;
+}
+
+.containerlogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
