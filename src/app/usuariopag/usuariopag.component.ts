@@ -30,7 +30,6 @@ export class UsuariopagComponent {
   constructor(private session: SessionManagementService, private getusu: UsuariosGetService, private titleser: Title, private router: Router){
     titleser.setTitle("EatMapUAA | Perfil de Usuario");
     this.actualizar();
-     
   }
 
   actualizar(){
