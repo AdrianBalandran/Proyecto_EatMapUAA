@@ -29,6 +29,7 @@ export class VistainfoComponent {
   auth = false; 
   sucursal: String = ""; 
   Sucursales: any; 
+  message: string = ""; 
 
 
   constructor(private getusu: UsuariosGetService, private session: SessionManagementService, public activatedRoute: ActivatedRoute, private router: Router){
@@ -78,34 +79,45 @@ export class VistainfoComponent {
   }
 
   pedir(){
+    // let date: Date = new Date(2024, 12, 13, 7, 23, 42);  
+
     let date: Date = new Date()  
     let dia = date.getUTCDay();  
-    if(dia == 1 || dia == 7){
-      console.log("No hay servicio Sábado ni Domingo"); 
-    }
-    const pedido = {
-      Id_Usuario: this.session.getSessionId(), 
-      Id_Cafeteria: this.comida.Id_Cafeteria, 
-      Id_Sucursal: this.parseInt(this.sucursal),
-      Orden: 0,
-      Pagado: "N",
-      Tiempo: this.comida.TiempoPrepa,
-      Tipo_pago: this.tipoPago,
-      Fecha: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
-    }
-    const Id_Comida = {
-      Pedido: pedido, 
-      Comida: {Id_Comida: this.data.Id_Comida}
+    let hour = date.getHours(); 
+    let nochediaflag = true; 
+    if(hour > 12){
+      nochediaflag = false; 
+      hour -= 12; 
     }
 
-    const urlapi: string = "http://localhost:3000/pedido/agregar"; 
-    this.getusu.getusuario(urlapi, Id_Comida).subscribe((res:any) => {
-      console.log(JSON.parse(JSON.stringify(res))); 
-      if(JSON.parse(JSON.stringify(res)).Status){
-        this.router.navigate(['/pedidos/']); 
+    if(dia == 0 || dia == 6){
+      this.message = "No hay servicio Sábado ni Domingo"; 
+    }else if((nochediaflag && hour < Number(this.inicio)) || (!nochediaflag && hour > Number(this.inicio))){
+      this.message = "No está abierto"; 
+    }else{
+      const pedido = {
+        Id_Usuario: this.session.getSessionId(), 
+        Id_Cafeteria: this.comida.Id_Cafeteria, 
+        Id_Sucursal: this.parseInt(this.sucursal),
+        Orden: 0,
+        Pagado: "N",
+        Tiempo: this.comida.TiempoPrepa,
+        Tipo_pago: this.tipoPago,
+        Fecha: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
       }
-    }); 
-
+      const Id_Comida = {
+        Pedido: pedido, 
+        Comida: {Id_Comida: this.data.Id_Comida}
+      }
+  
+      const urlapi: string = "http://localhost:3000/pedido/agregar"; 
+      this.getusu.getusuario(urlapi, Id_Comida).subscribe((res:any) => {
+        console.log(JSON.parse(JSON.stringify(res))); 
+        if(JSON.parse(JSON.stringify(res)).Status){
+          this.router.navigate(['/pedidos/']); 
+        }
+      }); 
+    }
   }
   parseInt(data: String){
     return Number(data); 

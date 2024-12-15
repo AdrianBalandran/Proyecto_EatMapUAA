@@ -10,7 +10,7 @@ p, li, option{
 }
 
 .division, .titulo, .info1, .precio, .subdivision, .ingre, .ingre p, .tiempovalue, .preciovalue, .boton, .necesario,
-.input, .select{
+.input, .select, .message{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -193,6 +193,17 @@ p, li, option{
 .boton button:hover{
     background-color: black;
     border: none;
+}
+.message{
+    margin-top: 25px;
+    width: 100%;
+    height: 50px;
+}
+.message p{
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 15px;
+    color: #FF4362;
 }
 
 select{
