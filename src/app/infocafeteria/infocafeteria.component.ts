@@ -73,11 +73,15 @@ export class InfocafeteriaComponent implements OnInit {
 
   // Método para construir el enlace de WhatsApp
   getWhatsAppLink(telefono: string | null | undefined): string | null {
+    const mensaje = encodeURIComponent("Hola!, quisiera consultarte algo sobre el servicio. ¿Tendrías un momento para hablar?");
     if (!telefono || typeof telefono !== 'string' || telefono.trim() === '' || telefono.toLowerCase() === 'null') {
       return null; // Devuelve null si el teléfono no es válido
     }
-    return `https://api.whatsapp.com/send?phone=${telefono}`;
+    return `https://api.whatsapp.com/send?phone=${telefono}&text=${mensaje}`;
   }
+  
+
+
   
 
 
