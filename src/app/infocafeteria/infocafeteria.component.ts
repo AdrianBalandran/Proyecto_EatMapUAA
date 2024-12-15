@@ -4,6 +4,7 @@ import { CafeteriaService } from '../cafetriaservice.service';
 import { CommonModule } from '@angular/common';
 import { FooterbajoComponent } from "../footerbajo/footerbajo.component";
 import { ChatwhatComponent } from "../chatwhat/chatwhat.component";
+import { Title } from '@angular/platform-browser';
 
 // Interfaz para tipar los datos de la cafetería
 interface Sucursal {
@@ -33,8 +34,11 @@ export class InfocafeteriaComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private cafeteriaService: CafeteriaService // Servicio inyectado
-  ) {}
+    private cafeteriaService: CafeteriaService, // Servicio inyectado
+    private titleser: Title
+  ) {
+    titleser.setTitle("EatMapUAA | Información Cafetería");
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
