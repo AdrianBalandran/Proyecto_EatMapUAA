@@ -26,6 +26,11 @@
     position: relative;
     border-radius: 35px;
 }
+
+.card, .card1, .card2{
+    box-shadow: 7px 7px 2px 1px rgba(255, 67, 98, .3);
+}
+
 .image{
     position: absolute;
     right: 150px;
