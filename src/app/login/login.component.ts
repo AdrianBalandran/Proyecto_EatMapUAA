@@ -34,7 +34,7 @@ export class LoginComponent {
     contra!: String; 
     error: String = ""; 
 
-    urlAPI: string = "http://localhost:3000/usuarios"; 
+    urlAPI: string = "http://192.168.100.25:3000/usuarios"; 
 
     constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
       titleser.setTitle("EatMapUAA | Iniciar Sesión")
@@ -68,7 +68,7 @@ export class LoginComponent {
       this.correo = this.loginForm?.get('email')?.value!;
       this.contra = this.loginForm?.get('contras')?.value!;
 
-      const urlAPI: string = "http://localhost:3000/login"; 
+      const urlAPI: string = "http://192.168.100.25:3000/login"; 
       this.getusu.getusuario(urlAPI, {Correo: this.correo, Contrasena: this.contra}).subscribe((res: any) => {
         this.usuarios = JSON.parse(JSON.stringify(res));
         console.log(this.usuarios); 

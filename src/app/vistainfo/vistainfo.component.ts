@@ -43,13 +43,13 @@ export class VistainfoComponent {
     }else{
       this.session.endSession; 
     }
-    const urlAPI: string = "http://localhost:3000/comidaid"; 
+    const urlAPI: string = "http://192.168.100.25:3000/comidaid"; 
     this.getusu.getusuario(urlAPI, this.data).subscribe((res:any) => {
       this.informacion = JSON.parse(JSON.stringify(res));
       this.comida = this.informacion.Comida; 
       this.getHorario(); 
       let dataCafe = {Id_Cafeteria: this.comida.Id_Cafeteria}; 
-      const urlapi: string = "http://localhost:3000/cafeterias/sucursales"; 
+      const urlapi: string = "http://192.168.100.25:3000/cafeterias/sucursales"; 
       this.getusu.getusuario(urlapi, dataCafe).subscribe((res:any) => {
         this.Sucursales = JSON.parse(JSON.stringify(res));
         this.sucursal = this.Sucursales[0].Id_Sucursal; 
@@ -110,7 +110,7 @@ export class VistainfoComponent {
         Comida: {Id_Comida: this.data.Id_Comida}
       }
   
-      const urlapi: string = "http://localhost:3000/pedido/agregar"; 
+      const urlapi: string = "http://192.168.100.25:3000/pedido/agregar"; 
       this.getusu.getusuario(urlapi, Id_Comida).subscribe((res:any) => {
         console.log(JSON.parse(JSON.stringify(res))); 
         if(JSON.parse(JSON.stringify(res)).Status){

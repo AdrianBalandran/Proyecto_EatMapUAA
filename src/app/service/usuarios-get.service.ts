@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuariosGetService {
-  urlAPI: string = "http://148.211.74.101:3000/usuarios"; 
+  urlAPI: string = "http://192.168.100.25:3000/usuarios"; 
   
   constructor(private http: HttpClient) { }
 

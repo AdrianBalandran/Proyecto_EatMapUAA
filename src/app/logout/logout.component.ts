@@ -21,7 +21,7 @@ export class LogoutComponent {
   private crear = true; 
   error: String = ""; 
 
-  urlAPI: string = "http://localhost:3000/usuarios"; 
+  urlAPI: string = "http://192.168.100.25:3000/usuarios"; 
 
   constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
     titleser.setTitle("EatMapUAA | Registro")
@@ -64,7 +64,7 @@ export class LogoutComponent {
     }
 
     if(this.crear){
-      const urlAPISend: string = "http://localhost:3000/usuarios/crear"; 
+      const urlAPISend: string = "http://192.168.100.25:3000/usuarios/crear"; 
       const user: Usuario = {
         Id_Usuario: 0, 
         Nombre: this.registroForm?.get('nombre')?.value!,
