@@ -57,6 +57,7 @@ export class CambiarusuariosComponent {
 
   onChangeCafeteria(deviceValue: any) {
     this.cafeteria = deviceValue.value; 
+    this.sucursal = this.cafeterias[this.cafeteria-1].Sucursales[0].Id_Sucursal; 
   }
 
   onChangeSucursal(deviceValue: any) {
