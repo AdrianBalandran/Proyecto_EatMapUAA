@@ -15,32 +15,45 @@ export class SessionManagementService {
 
   // Set the session data in localStorage
   setSession(sessionData: any, sessionName: any, sessionId: any): void {
-    localStorage.setItem(this.sessionKey, JSON.stringify(this.encrypt(sessionData)));
-    localStorage.setItem(this.sessionName, JSON.stringify(this.encrypt(sessionName)));
-    localStorage.setItem(this.sessionId, JSON.stringify(this.encrypt(sessionId.toString())));
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(this.sessionKey, JSON.stringify(this.encrypt(sessionData)));
+      localStorage.setItem(this.sessionName, JSON.stringify(this.encrypt(sessionName)));
+      localStorage.setItem(this.sessionId, JSON.stringify(this.encrypt(sessionId.toString())));
+    }
       // Retrieve session data from localStorage
   }
 
   getSession(): any | null {
-    const session = localStorage.getItem(this.sessionKey);
-    return session ? this.decrypt(JSON.parse(session)) : null;
+    if (typeof localStorage !== 'undefined') {
+      const session = localStorage.getItem(this.sessionKey);
+      return session ? this.decrypt(JSON.parse(session)) : null;
+    }
+    return null;
   }
 
   getSessionName(): any | null {
-    const session = localStorage.getItem(this.sessionName);
-    return session ? this.decrypt(JSON.parse(session)) : null;
+    if (typeof localStorage !== 'undefined') {
+      const session = localStorage.getItem(this.sessionName);
+      return session ? this.decrypt(JSON.parse(session)) : null;
+    }
+    return null;
   }
   getSessionId(): any | null {
-    const session = localStorage.getItem(this.sessionId);
-    return session ? Number(this.decrypt(JSON.parse(session))) : null;
+    if (typeof localStorage !== 'undefined') {
+      const session = localStorage.getItem(this.sessionId);
+      return session ? Number(this.decrypt(JSON.parse(session))) : null;
+    }
+    return null;
   }
 
 
   // End the session by removing the session data
   endSession(): void {
-    localStorage.removeItem(this.sessionKey);
-    localStorage.removeItem(this.sessionName);
-    localStorage.removeItem(this.sessionId);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.removeItem(this.sessionKey);
+      localStorage.removeItem(this.sessionName);
+      localStorage.removeItem(this.sessionId);
+    }
   }
 
   // Check if the user is authenticated
