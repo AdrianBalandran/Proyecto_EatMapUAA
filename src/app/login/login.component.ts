@@ -74,7 +74,23 @@ export class LoginComponent {
         console.log(this.usuarios); 
         if(this.usuarios.success){
           this.session.endSession(); 
-          this.session.setSession(this.correo, this.usuarios.usuario.Nombre, this.usuarios.usuario.Id_Usuario);
+          
+          // Generar un token JWT simple basado en la información del usuario
+          const tokenData = {
+            id: this.usuarios.usuario.Id_Usuario,
+            email: this.correo,
+            nombre: this.usuarios.usuario.Nombre,
+            tipo: this.usuarios.usuario.Tipo,
+            iat: new Date().getTime() // Timestamp de creación
+          };
+          
+          // Convertir a string y codificar
+          const tokenStr = JSON.stringify(tokenData);
+          const token = btoa(tokenStr); // Codificación simple en base64
+          
+          // Guardar sesión con el token
+          this.session.setSession(this.correo, this.usuarios.usuario.Nombre, this.usuarios.usuario.Id_Usuario, token);
+          
           if(this.usuarios.usuario.Tipo != "Cliente"){
             this.router.navigate(['/usuario']);  
           }else{
@@ -92,3 +108,8 @@ export class LoginComponent {
 
 
 }
+
+    
+
+
+

@@ -11,16 +11,22 @@ export class SessionManagementService {
   private sessionKey = 'user_session';
   private sessionName = 'user_name';
   private sessionId = 'user_id';
+  private tokenKey = 'user_token';
   private password = '2024EatMapUAA'; 
 
   // Set the session data in localStorage
-  setSession(sessionData: any, sessionName: any, sessionId: any): void {
+  setSession(sessionData: any, sessionName: any, sessionId: any, token?: string): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(this.sessionKey, JSON.stringify(this.encrypt(sessionData)));
       localStorage.setItem(this.sessionName, JSON.stringify(this.encrypt(sessionName)));
       localStorage.setItem(this.sessionId, JSON.stringify(this.encrypt(sessionId.toString())));
+      
+      // Almacenar el token si está disponible
+      if (token) {
+        localStorage.setItem(this.tokenKey, JSON.stringify(this.encrypt(token)));
+        console.log('Token almacenado:', token);
+      }
     }
-      // Retrieve session data from localStorage
   }
 
   getSession(): any | null {
@@ -46,6 +52,15 @@ export class SessionManagementService {
     return null;
   }
 
+  // Obtener el token almacenado
+  getToken(): string | null {
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem(this.tokenKey);
+      return token ? this.decrypt(JSON.parse(token)) : null;
+    }
+    return null;
+  }
+
 
   // End the session by removing the session data
   endSession(): void {
@@ -53,6 +68,7 @@ export class SessionManagementService {
       localStorage.removeItem(this.sessionKey);
       localStorage.removeItem(this.sessionName);
       localStorage.removeItem(this.sessionId);
+      localStorage.removeItem(this.tokenKey);
     }
   }
 
