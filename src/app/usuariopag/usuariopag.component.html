@@ -71,7 +71,7 @@
     </div>
     
 }
-@if(usuario.Tipo == "Admin" && usuario){
+@if(usuario && usuario.Tipo == "Admin"){
     <header>
         <app-menuadmin></app-menuadmin>
     </header>  

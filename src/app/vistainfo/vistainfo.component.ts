@@ -18,8 +18,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './vistainfo.component.css'
 })
 export class VistainfoComponent {
-  informacion: any; 
-  comida!: Comida; 
+  informacion: any = { Ingredientes: [], Horario: '', NombreCafeteria: '' }; // Inicializar informacion con propiedades vacías
+  comida: Comida = {} as Comida; // Inicializar comida como un objeto vacío
   tipoPago: String = 'E'; 
   data: any = {
     Id_Comida: 3
@@ -28,7 +28,7 @@ export class VistainfoComponent {
   final = ""; 
   auth = false; 
   sucursal: String = ""; 
-  Sucursales: any; 
+  Sucursales: any = []; // Inicializar Sucursales como un array vacío
   message: string = ""; 
 
 
