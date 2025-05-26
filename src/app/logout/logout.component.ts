@@ -53,6 +53,10 @@ export class LogoutComponent {
       Validators.required, 
       Validators.minLength(3)
     ]),  
+    contra2: new FormControl('', [
+      Validators.required, 
+      Validators.minLength(3)
+    ])
   });
 
 
@@ -63,6 +67,11 @@ export class LogoutComponent {
       return false; 
     }
 
+    if(this.registroForm.value.contra2 != this.registroForm.value.contra){
+      this.error = "Las contraseñas no coinciden.";
+      return false;
+    }
+
     if(this.crear){
       const urlAPISend: string = "http://localhost:3000/usuarios/crear"; 
       const user: Usuario = {
@@ -71,7 +80,7 @@ export class LogoutComponent {
         Primer_Apellido: this.registroForm?.get('primape')?.value!,
         Segundo_Apellido: this.registroForm?.get('segape')?.value!, 
         Email: this.registroForm?.get('correo')?.value!, 
-        Contrasena: this.registroForm?.get('contra')?.value!, 
+        Contrasena: this.registroForm?.get('contra')?.value!,  
         Telefono: this.registroForm?.get('telefono')?.value!,
         Tipo: "Cliente", 
       }
@@ -87,6 +96,7 @@ export class LogoutComponent {
       }, (err: { message: String; }) => { 
         this.error = "Ya se ha utilizado este correo.";
       });
+      
     }
     return false; 
   }
