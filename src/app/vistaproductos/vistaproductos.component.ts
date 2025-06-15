@@ -20,6 +20,7 @@ export class VistaproductosComponent implements OnInit {
   filtro: string = 'comida'; // Filtro predeterminado
   resultados: any[] = []; // Resultados de la búsqueda
   mensajeError: string = ''; // Mensaje de error
+  loading: boolean = false; // Estado de carga
 
   constructor(private busquedaService: BusquedaService, private titelser: Title) {
     titelser.setTitle("EatMapUAA | Vista Feel");
@@ -42,34 +43,33 @@ export class VistaproductosComponent implements OnInit {
   }
 
   buscar() {
-    // Limpia los resultados y el mensaje de error al iniciar la búsqueda
+    this.loading = true; // Iniciar el estado de carga
     this.resultados = [];
     this.mensajeError = '';
 
     // Verifica si el filtro es "ingrediente" y no hay búsqueda activa
     if (this.filtro === 'ingrediente' && this.query === '') {
-      this.mensajeError = 'Realiza una búsqueda por ingrediente para obtener resultados.';
-      return; // No hacer la llamada al servicio si está vacío el campo de búsqueda
+        this.mensajeError = 'Realiza una búsqueda por ingrediente para obtener resultados.';
+        this.loading = false; // Detener el estado de carga
+        return; // No hacer la llamada al servicio si está vacío el campo de búsqueda
     }
 
     this.busquedaService.buscar(this.query, this.filtro).subscribe(
-      (data) => {
-        // console.log('Datos recibidos del backend:', data); // Verifica que incluya Id_Cafeteria
-        if (data.length === 0) {
-          // Si no hay resultados, mostrar mensaje de error
-          this.mensajeError = `No se encontraron resultados para "${this.query}".`;
-          this.resultados = [];
-        } else {
-          // Mostrar los resultados
-          this.resultados = data;
-          this.mensajeError = '';
+        (data) => {
+            if (data.length === 0) {
+                this.mensajeError = `No se encontraron resultados para "${this.query}".`;
+                this.resultados = [];
+            } else {
+                this.resultados = data;
+                this.mensajeError = '';
+            }
+            this.loading = false; // Detener el estado de carga
+        },
+        (error) => {
+            this.mensajeError = `No se encontraron resultados para "${this.query}".`;
+            console.error(error);
+            this.loading = false; // Detener el estado de carga
         }
-      },
-      (error) => {
-        // En caso de error, mostrar mensaje
-        this.mensajeError = `No se encontraron resultados para "${this.query}".`;
-        console.error(error);
-      }
     );
-  }
+}
 }

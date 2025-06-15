@@ -19,6 +19,18 @@
   </div>
 </section>
 
+<!-- Spinner de carga -->
+<div *ngIf="loading" class="spinner">
+  <div class="double-bounce1"></div>
+  <div class="double-bounce2"></div>
+</div>
+
+<div *ngIf="loading" class="mensajes">
+  <h4>Cargando contenido, espere...</h4>
+</div>
+
+
+
 <!-- Filtro de las categoria de busqueda o bien contenido -->
 <div class="centfil">
   <div class="wrapper">
@@ -111,7 +123,7 @@
       <ul>
         <li *ngFor="let suc of resultado.Sucursales">
           <h4>- {{ suc.NombreSucursal }}</h4>
-          <b>Horario:</b> {{ suc.Horario }} <br>
+          <b>Horario:</b> {{ suc.Hora_Apertura }}:00 a.m. - {{ suc.Hora_Cierre }}:00 p.m.<br>
           <b>Local:</b> {{ suc.NumeroLocal }} <br>
           <b>Edificio:</b> {{ suc.Edificio }} <br><hr>
         </li>
