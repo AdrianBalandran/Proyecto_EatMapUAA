@@ -90,11 +90,11 @@ export class VistainfoComponent {
       hour -= 12; 
     }
 
-    if(dia == 0 || dia == 6){
-      this.message = "No hay servicio Sábado ni Domingo"; 
-    }else if((nochediaflag && hour < Number(this.inicio)) || (!nochediaflag && hour > Number(this.inicio))){
-      this.message = "No está abierto"; 
-    }else{
+    // if(dia == 0 || dia == 6){
+    //   this.message = "No hay servicio Sábado ni Domingo"; 
+    // }else if((nochediaflag && hour < Number(this.inicio)) || (!nochediaflag && hour > Number(this.inicio))){
+    //   this.message = "No está abierto"; 
+    // }else{
       const pedido = {
         Id_Usuario: this.session.getSessionId(), 
         Id_Cafeteria: this.comida.Id_Cafeteria, 
@@ -117,7 +117,7 @@ export class VistainfoComponent {
           this.router.navigate(['/pedidos/']); 
         }
       }); 
-    }
+    // }
   }
   parseInt(data: String){
     return Number(data); 
