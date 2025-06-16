@@ -21,7 +21,7 @@
                                 <div class="recogido"><p>No recogido</p></div>
                             }
                         }
-                        <div class="cancelado1" (click)="pedidoCancelado(pedido.Orden)"><p>Cancelar</p></div>
+                        <div class="cancelado1" (click)="pedidoCancelado(pedido.Id_Orden)"><p>Cancelar</p></div>
                         <div class="imgcafeteria">
                             <img src="/assets/Imagenes/casa.png" alt="Cafetería">
                         </div>
@@ -32,7 +32,7 @@
                             <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>
                         }
                         <div class="tipo">
-                            @if(pedido.Tipo_pago == "T"){
+                            @if(pedido.TipoPago == "T"){
                                 <p>Tarjeta</p>
                             }@else{
                                 <p>Efectivo</p>
