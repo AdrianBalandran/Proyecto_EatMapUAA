@@ -15,7 +15,7 @@ export class SessionManagementService {
   private password = '2024EatMapUAA'; 
 
   // Set the session data in localStorage
-  setSession(sessionData: any, sessionName: any, sessionId: any, token?: string): void {
+  setSession(sessionData: any, sessionName: string, sessionId: string, token?: string): void {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(this.sessionKey, JSON.stringify(this.encrypt(sessionData)));
       localStorage.setItem(this.sessionName, JSON.stringify(this.encrypt(sessionName)));
@@ -47,7 +47,7 @@ export class SessionManagementService {
   getSessionId(): any | null {
     if (typeof localStorage !== 'undefined') {
       const session = localStorage.getItem(this.sessionId);
-      return session ? Number(this.decrypt(JSON.parse(session))) : null;
+      return session ? String(this.decrypt(JSON.parse(session))) : null;
     }
     return null;
   }

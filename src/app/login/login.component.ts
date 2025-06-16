@@ -92,7 +92,7 @@ export class LoginComponent {
           this.session.setSession(this.correo, this.usuarios.usuario.Nombre, this.usuarios.usuario.Id_Usuario, token);
           
           if(this.usuarios.usuario.Tipo != "Cliente"){
-            this.router.navigate(['/usuario']);  
+            this.router.navigate(['/vistaadmin']);  
           }else{
             this.router.navigate(['/vistaprod']);  
           }
@@ -108,8 +108,3 @@ export class LoginComponent {
 
 
 }
-
-    
-
-
-
