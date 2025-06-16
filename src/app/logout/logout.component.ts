@@ -88,11 +88,28 @@ export class LogoutComponent {
       this.getusu.getusuario(urlAPISend, user).subscribe((res: any) => {
         this.response = JSON.parse(JSON.stringify(res));
         console.log(this.response); 
-        if(this.response.success){
-          this.session.endSession(); 
-          this.session.setSession(this.registroForm?.get('correo')?.value!, this.registroForm?.get('nombre')?.value!, this.response.usuario);
-          this.router.navigate(['/vistaprod']);  
-        }
+        if (this.response.success) {
+  this.session.endSession(); 
+  
+  const usuario = this.response.usuario;
+
+  const tokenData = {
+    id: usuario.Id_Usuario,
+    email: usuario.Email,
+    nombre: usuario.Nombre,
+    tipo: usuario.Tipo,
+    iat: new Date().getTime()
+  };
+
+  const tokenStr = JSON.stringify(tokenData);
+  const token = btoa(tokenStr);
+
+  // Guardar sesión completa
+  this.session.setSession(usuario.Email, usuario.Nombre, usuario.Id_Usuario, token);
+
+  this.router.navigate(['/vistaprod']);
+}
+
       }, (err: { message: String; }) => { 
         this.error = "Ya se ha utilizado este correo.";
       });
