@@ -9,7 +9,7 @@
                 <p class="texto textonombre">{{usuario.Nombre}} {{usuario.Primer_Apellido}} {{usuario.Segundo_Apellido}}</p>
             </div>
             <div class="tipo">
-                <p class="texto textop bold">{{usuario.Tipo}}</p>
+                <p class="texto textop bold">{{tipo}}</p>
             </div>
 
             <div class="sub">
@@ -71,7 +71,7 @@
     </div>
     
 }
-@if(usuario && usuario.Tipo == "Admin"){
+@if(usuario && usuario.Tipo == "A"){
     <header>
         <app-menuadmin></app-menuadmin>
     </header>  
