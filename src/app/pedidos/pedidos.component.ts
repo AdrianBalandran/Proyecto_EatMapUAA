@@ -68,7 +68,7 @@ export class PedidosComponent {
       let usuario!: Usuario; 
       this.getusu.getusuario(urlAPIII, user).subscribe((res: any) => {
         usuario = JSON.parse(JSON.stringify(res));
-        if(usuario.Tipo == "Encargado"){
+        if(usuario.Tipo == "E"){
           this.flagencargado = true; 
           const urlAPII: string = "http://localhost:3000/pedidos/getEnc"; 
           this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {

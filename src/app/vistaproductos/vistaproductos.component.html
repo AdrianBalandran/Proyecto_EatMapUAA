@@ -1,160 +1,167 @@
-<section class="centrarbus">
-  <div class="search">
-    <input
-      type="text"
-      class="search__input"
-      placeholder="Realiza una búsqueda de acuerdo con el filtro"
-      [(ngModel)]="query"
-      (keydown.enter)="buscar()"
-    />
-    <button class="search__button" (click)="buscar()">
-      <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
-        <g>
-          <path
-            d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
-          ></path>
-        </g>
-      </svg>
-    </button>
-  </div>
-</section>
-
-
-
-<!-- Filtro de las categoria de busqueda o bien contenido -->
-<div class="centfil">
-  <div class="wrapper">
-    <div class="option">
-      <input checked value="comida" name="filtro" type="radio" id="comida" class="input" (change)="setFiltro('comida')"/>
-      <div class="btn">
-        <span class="span" for="comida">Comida</span>
-      </div>
-    </div>
-    <div class="option">
-      <input value="cafeteria" name="filtro" type="radio" id="cafeteria" class="input" (change)="setFiltro('cafeteria')"/>
-      <div class="btn">
-        <span class="span" for="cafeteria">Cafetería</span>
-      </div>
-    </div>
-    <div class="option">
-      <input value="ingrediente" name="filtro" type="radio" id="ingrediente" class="input" (change)="setFiltro('ingrediente')"/>
-      <div class="btn">
-        <span class="span" for="ingrediente">Ingrediente</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Spinner de carga -->
-<div *ngIf="loading" class="spinner">
-  <div class="double-bounce1"></div>
-  <div class="double-bounce2"></div>
-</div>
-
-<div *ngIf="loading" class="mensajes">
-  <h4>Cargando contenido, espere...</h4>
-</div>
-
-<section *ngIf="mensajeError" class="error-message">
-  <h3>{{ mensajeError }}</h3>
-  <br>
-  <!-- Loader --> 
-  <div class="main">
-    <div class="dog">
-      <div class="dog__paws">
-        <div class="dog__bl-leg leg">
-          <div class="dog__bl-paw paw"></div>
-          <div class="dog__bl-top top"></div>
-        </div>
-        <div class="dog__fl-leg leg">
-          <div class="dog__fl-paw paw"></div>
-          <div class="dog__fl-top top"></div>
-        </div>
-        <div class="dog__fr-leg leg">
-          <div class="dog__fr-paw paw"></div>
-          <div class="dog__fr-top top"></div>
-        </div>
-      </div>
+  <div class="allcontenido">
   
-      <div class="dog__body">
-        <div class="dog__tail"></div>
+  <section class="centrarbus">
+    <div class="search">
+      <input type="text" class="search__input" placeholder="Realiza una búsqueda de acuerdo con el filtro"
+        [(ngModel)]="query" (keydown.enter)="buscar()" />
+      <button class="search__button" (click)="buscar()">
+        <svg class="search__icon" aria-hidden="true" viewBox="0 0 24 24">
+          <g>
+            <path
+              d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z">
+            </path>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+
+
+  <!-- Filtro de las categoria de busqueda o bien contenido -->
+  <div class="centfil">
+    <div class="wrapper">
+      <div class="option">
+        <input checked value="comida" name="filtro" type="radio" id="comida" class="input"
+          (change)="setFiltro('comida')" />
+        <div class="btn">
+          <span class="span" for="comida">Comida</span>
+        </div>
       </div>
-  
-      <div class="dog__head">
-        <div class="dog__snout">
-          <div class="dog__eyes">
-            <div class="dog__eye-l"></div>
-            <div class="dog__eye-r"></div>
+      <div class="option">
+        <input value="cafeteria" name="filtro" type="radio" id="cafeteria" class="input"
+          (change)="setFiltro('cafeteria')" />
+        <div class="btn">
+          <span class="span" for="cafeteria">Cafetería</span>
+        </div>
+      </div>
+      <div class="option">
+        <input value="ingrediente" name="filtro" type="radio" id="ingrediente" class="input"
+          (change)="setFiltro('ingrediente')" />
+        <div class="btn">
+          <span class="span" for="ingrediente">Ingrediente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spinner de carga -->
+  <div *ngIf="loading" class="spinner">
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+
+  <div *ngIf="loading" class="mensajes">
+    <h4>Cargando contenido, espere...</h4>
+  </div>
+
+  <section *ngIf="mensajeError" class="error-message">
+    <h3>{{ mensajeError }}</h3>
+    <br>
+    <!-- Loader -->
+    <div class="main">
+      <div class="dog">
+        <div class="dog__paws">
+          <div class="dog__bl-leg leg">
+            <div class="dog__bl-paw paw"></div>
+            <div class="dog__bl-top top"></div>
+          </div>
+          <div class="dog__fl-leg leg">
+            <div class="dog__fl-paw paw"></div>
+            <div class="dog__fl-top top"></div>
+          </div>
+          <div class="dog__fr-leg leg">
+            <div class="dog__fr-paw paw"></div>
+            <div class="dog__fr-top top"></div>
           </div>
         </div>
+
+        <div class="dog__body">
+          <div class="dog__tail"></div>
+        </div>
+
+        <div class="dog__head">
+          <div class="dog__snout">
+            <div class="dog__eyes">
+              <div class="dog__eye-l"></div>
+              <div class="dog__eye-r"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dog__head-c">
+          <div class="dog__ear-r"></div>
+          <div class="dog__ear-l"></div>
+        </div>
       </div>
-  
-      <div class="dog__head-c">
-        <div class="dog__ear-r"></div>
-        <div class="dog__ear-l"></div>
+    </div>
+  </section>
+
+  <section *ngIf="resultados.length > 0" class="resultados">
+    <!-- Iteramos por cada resultado -->
+    <div *ngFor="let resultado of resultados" class="resultado">
+      <!-- Bloque específico para el filtro "comida" -->
+      <div *ngIf="filtro === 'comida'" [routerLink]="['/vista', resultado.Id_Comida]">
+        <h3>{{ resultado.Nombre }}</h3>
+        <p><strong>Precio:</strong> $ {{ resultado.Precio }}</p>
+        <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
+        <p><strong>Disponibilidad:</strong></p>
+        <ul>
+          <li *ngFor="let disp of resultado.Disponibilidad">
+            <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
+            <strong>Local:</strong> {{ disp.NumeroLocal }} <br>
+            <strong>Edificio:</strong> {{ disp.Edificio }} <br>
+            <hr>
+          </li>
+        </ul>
+        <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
+      </div>
+
+      <!-- Bloque específico para el filtro "cafeteria" -->
+      <div *ngIf="filtro === 'cafeteria'" [routerLink]="['/cafeteria', resultado.Id_Cafeteria]">
+        <h3>{{ resultado.Nombre }}</h3>
+        <p><strong>Sucursales:</strong></p>
+        <ul>
+          <li *ngFor="let suc of resultado.Sucursales">
+            <h4>- {{ suc.NombreSucursal }}</h4>
+            <b>Horario:</b> {{ suc.Hora_Apertura }}:00 a.m. - {{ suc.Hora_Cierre }}:00 p.m.<br>
+            <b>Local:</b> {{ suc.NumeroLocal }} <br>
+            <b>Edificio:</b> {{ suc.Edificio }} <br>
+            <hr>
+          </li>
+        </ul>
+      </div>
+
+
+      <!-- Bloque específico para el filtro "ingrediente" -->
+      <div *ngIf="filtro === 'ingrediente'" [routerLink]="['/vista', resultado.Id_Comida]">
+        <h3>{{ resultado.Nombre }}</h3>
+        <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
+        <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
+        <p><strong>Disponibilidad:</strong></p>
+        <ul>
+          <li *ngFor="let disp of resultado.Disponibilidad">
+            <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
+            <b>Local:</b> {{ disp.NumeroLocal }} <br>
+            <b>Edificio:</b> {{ disp.Edificio }} <br>
+            <hr>
+          </li>
+        </ul>
+        <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<section *ngIf="resultados.length > 0" class="resultados">
-  <!-- Iteramos por cada resultado -->
-  <div *ngFor="let resultado of resultados" class="resultado">
-    <!-- Bloque específico para el filtro "comida" -->
-    <div *ngIf="filtro === 'comida'" [routerLink]="['/vista', resultado.Id_Comida]">
-      <h3>{{ resultado.Nombre }}</h3>
-      <p><strong>Precio:</strong> $ {{ resultado.Precio }}</p>
-      <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
-      <p><strong>Disponibilidad:</strong></p>
-      <ul>
-        <li *ngFor="let disp of resultado.Disponibilidad">
-          <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
-          <strong>Local:</strong> {{ disp.NumeroLocal }} <br>
-          <strong>Edificio:</strong> {{ disp.Edificio }} <br> <hr>
-        </li>
-      </ul>
-      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
-    </div>
-
-    <!-- Bloque específico para el filtro "cafeteria" -->
-    <div *ngIf="filtro === 'cafeteria'" [routerLink]="['/cafeteria', resultado.Id_Cafeteria]">
-      <h3>{{ resultado.Nombre }}</h3>
-      <p><strong>Sucursales:</strong></p>
-      <ul>
-        <li *ngFor="let suc of resultado.Sucursales">
-          <h4>- {{ suc.NombreSucursal }}</h4>
-          <b>Horario:</b> {{ suc.Hora_Apertura }}:00 a.m. - {{ suc.Hora_Cierre }}:00 p.m.<br>
-          <b>Local:</b> {{ suc.NumeroLocal }} <br>
-          <b>Edificio:</b> {{ suc.Edificio }} <br><hr>
-        </li>
-      </ul>
-    </div>
-    
-
-    <!-- Bloque específico para el filtro "ingrediente" -->
-    <div *ngIf="filtro === 'ingrediente'" [routerLink]="['/vista', resultado.Id_Comida]">
-      <h3>{{ resultado.Nombre }}</h3>
-      <p><strong>Precio:</strong> ${{ resultado.Precio }}</p>
-      <p><strong>Ingredientes:</strong> {{ resultado.Ingredientes.join(', ') }}</p>
-      <p><strong>Disponibilidad:</strong></p>
-      <ul>
-        <li *ngFor="let disp of resultado.Disponibilidad">
-          <h4>{{ disp.Cafeteria }} - {{ disp.Sucursal }}</h4>
-          <b>Local:</b> {{ disp.NumeroLocal }} <br>
-          <b>Edificio:</b> {{ disp.Edificio }} <br> <hr>
-        </li>
-      </ul>
-      <p><strong>Tiempo de preparación:</strong> {{ resultado.TiempoPrepa }} min.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
 
 
-<header>
-  <app-menunav></app-menunav>
-</header>
+  <header>
+    <app-menunav></app-menunav>
+  </header>
+
+
 
 <footer>
   <app-footerbajo></app-footerbajo>
 </footer>
+
+  </div>

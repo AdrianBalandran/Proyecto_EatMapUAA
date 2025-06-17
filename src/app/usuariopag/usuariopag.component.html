@@ -9,7 +9,16 @@
                 <p class="texto textonombre">{{usuario.Nombre}} {{usuario.Primer_Apellido}} {{usuario.Segundo_Apellido}}</p>
             </div>
             <div class="tipo">
-                <p class="texto textop bold">{{tipo}}</p>
+                <!-- <p class="texto textop bold">{{usuario.Tipo}}</p> -->
+                 @if(usuario.Tipo === 'C'){
+                    <p class="texto textop bold">Cliente</p>
+                 }
+                 @if(usuario.Tipo === 'A'){
+                    <p class="texto textop bold">Administrador</p>
+                 }
+                 @if(usuario.Tipo === 'E'){
+                    <p class="texto textop bold">Encargado</p>
+                 }
             </div>
 
             <div class="sub">
