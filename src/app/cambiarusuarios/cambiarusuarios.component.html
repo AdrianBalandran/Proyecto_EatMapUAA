@@ -7,7 +7,7 @@
             <div class="nombres">
                 <select name="nombres" id="nombres" (change)="onChangeNombre($event.target)">
                     @for(usu of usuarios; track usu){
-                        <option value="{{usu.Id_Usuario}}">{{usu.Nombre_Completo}}</option>
+                        <option value="{{usu.Id_Usuario}}">{{usu.Nombre}}</option>
                     }
                 </select>
             </div>
@@ -23,14 +23,14 @@
             <div class="encargado">
                 <div class="cafeteria">
                     <select name="cafeteria" id="cafeteria" (change)="onChangeCafeteria($event.target)">
-                        @for(cafe of cafeterias; track cafe){
+                        @for(cafe of cafeteriastotales; track cafe){
                             <option value="{{cafe.Id_Cafeteria}}">{{cafe.Nombre_Cafeteria}}</option>
                         }
                     </select>
                 </div>
                 <div class="sucursal">
                     <select name="sucursal" id="sucursal" (change)="onChangeSucursal($event.target)">
-                        @for(sucu of getSucu(); track sucu){
+                        @for(sucu of sucursalestotales; track sucu){
                             <option value="{{sucu.Id_Sucursal}}">{{sucu.Nombre_Sucursal}}</option>
                         }                    
                     </select>

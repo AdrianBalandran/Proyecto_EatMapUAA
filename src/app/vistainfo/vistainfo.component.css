@@ -1,3 +1,14 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 *{
     margin: 0;
     padding: 0;
@@ -164,6 +175,18 @@ p, li, option{
     height: 100px;
     /* background-color: aqua; */
 }
+.sub1{
+    width: 50%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .sub input{
     width: 16px;
     height: 16px;
@@ -205,6 +228,10 @@ p, li, option{
     font-size: 15px;
     color: #FF4362;
 }
+.NumP{
+    width: 30px;
+    height: 30px;
+}
 
 select{
     background-color: #fd4263;
@@ -217,7 +244,10 @@ select{
     margin: 10px;
     width: 230px;
 }
-
+select.NumP{
+    height: 40px;   
+    width: 100px;
+}
 
 @media (max-width: 750px) {
     .info{

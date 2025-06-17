@@ -7,6 +7,7 @@ import { SessionManagementService } from '../service/session-management.service'
 import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-cambiarusuarios',
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './cambiarusuarios.component.html',
   styleUrl: './cambiarusuarios.component.css'
 })
+
 export class CambiarusuariosComponent {
 
   usuarios!: any; 
@@ -23,6 +25,8 @@ export class CambiarusuariosComponent {
   cafeteria!: number;
   sucursal!: number;
   cafeterias!: any; 
+  cafeteriastotales!: any; 
+  sucursalestotales!: any; 
   response!: any; 
   message: string = ""; 
 
@@ -42,8 +46,9 @@ export class CambiarusuariosComponent {
     const urlAPI: string = "http://localhost:3000/cafeusu/todos"; 
     this.getusu.getJSON(urlAPI).subscribe((res: any) => {
       this.cafeterias = JSON.parse(JSON.stringify(res));
+      this.findDistinct(); 
       this.cafeteria = this.cafeterias[0].Id_Cafeteria;
-      this.sucursal = this.cafeterias[0].Sucursales[0].Id_Sucursal; 
+      this.sucursal = Number(this.cafeterias[0].Id_Sucursal); 
     }); 
   }
 
@@ -53,11 +58,13 @@ export class CambiarusuariosComponent {
 
   onChangeTipo(deviceValue: any) {
     this.tipo = deviceValue.value; 
+    this.findSucursales(this.cafeteria); 
   }
 
   onChangeCafeteria(deviceValue: any) {
     this.cafeteria = deviceValue.value; 
-    this.sucursal = this.cafeterias[this.cafeteria-1].Sucursales[0].Id_Sucursal; 
+    let suc = this.findSucursales(this.cafeteria);
+    this.sucursal = suc[0].Id_Sucursal; 
   }
 
   onChangeSucursal(deviceValue: any) {
@@ -65,13 +72,13 @@ export class CambiarusuariosComponent {
   }
 
   getSucu(): any{
-    return this.cafeterias.find((rel: any) => rel.Id_Cafeteria == Number(this.cafeteria)).Sucursales; 
+    return this.findSucursales(this.cafeteria); 
   }
 
   cambiarUsuario(){
     const urlAPI: string = "http://localhost:3000/usuario/cambiar"; 
     const data = {
-      Id_Usuario: Number(this.nombre), 
+      Id_Usuario: this.nombre, 
       Tipo: this.tipo, 
       Id_Cafeteria: this.cafeteria, 
       Id_Sucursal: this.sucursal
@@ -85,5 +92,32 @@ export class CambiarusuariosComponent {
       this.message = err.error.message; 
     });
   }
+
+  findDistinct() {
+    let res = [];
+    for (let i = 0; i < this.cafeterias.length; i++) {
+        let j;
+        for (j = 0; j < i; j++)
+            if (this.cafeterias[i].Id_Cafeteria === this.cafeterias[j].Id_Cafeteria)
+                break;
+        // Include this element if not included previously
+        if (i === j){
+            res.push({Id_Cafeteria: this.cafeterias[i].Id_Cafeteria, Nombre_Cafeteria:this.cafeterias[i].Nombre_Cafeteria});
+        }
+    }
+    this.cafeteriastotales = res;
+  }
+
+  findSucursales(num: Number) {
+    this.sucursalestotales = []; 
+    for (let i = 0; i < this.cafeterias.length; i++) {
+      if (Number(this.cafeterias[i].Id_Cafeteria) == num){
+        this.sucursalestotales.push({Id_Sucursal: this.cafeterias[i].Id_Sucursal, Nombre_Sucursal:this.cafeterias[i].Nombre_Sucursal});
+      }
+    }
+    return this.sucursalestotales; 
+  }
+
+
 }
 

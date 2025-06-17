@@ -23,7 +23,7 @@
             <p class="subtitulo negro">Cafetería</p>
             <p class="negro"> {{informacion.NombreCafeteria}} </p>
             <div class="select">
-                <select name="sucursales" id="sucursales" [(ngModel)]="sucursal">
+                <select name="sucursales" id="sucursales" class="sucursales" [(ngModel)]="sucursal">
                 @for(sucu of Sucursales; track sucu){
                     <option value="{{sucu.Id_Sucursal}}">{{sucu.NombreSucursal}}</option>
                 }
@@ -49,6 +49,20 @@
                 </div>
             </div>
         </div>
+        <div class="necesario">
+            <p class="negro">Número de productos</p>
+            <div class="sub1">
+                <div class="input2">
+                    <select name="NumP" id="NumP" class="NumP" [(ngModel)]="NoComidas">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>                
+                </div>
+            </div>
+        </div>
+
         <div class="message">
             <p>{{message}}</p>
         </div>

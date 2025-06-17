@@ -91,7 +91,7 @@ export class LoginComponent {
           // Guardar sesión con el token
           this.session.setSession(this.correo, this.usuarios.usuario.Nombre, this.usuarios.usuario.Id_Usuario, token);
           
-          if(this.usuarios.usuario.Tipo != "Cliente"){
+          if(this.usuarios.usuario.Tipo != "C"){
             this.router.navigate(['/vistaadmin']);  
           }else{
             this.router.navigate(['/vistaprod']);  

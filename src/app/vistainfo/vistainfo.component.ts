@@ -28,6 +28,7 @@ export class VistainfoComponent {
   final = ""; 
   auth = false; 
   sucursal: String = ""; 
+  NoComidas: Number = 1; 
   Sucursales: any = []; // Inicializar Sucursales como un array vacío
   message: string = ""; 
 
@@ -107,7 +108,7 @@ export class VistainfoComponent {
       }
       const Id_Comida = {
         Pedido: pedido, 
-        Comida: {Id_Comida: this.data.Id_Comida}
+        Comida: {Id_Comida: this.data.Id_Comida, NoComida: this.NoComidas}
       }
   
       const urlapi: string = "http://localhost:3000/pedido/agregar"; 
