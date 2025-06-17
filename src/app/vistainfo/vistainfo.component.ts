@@ -30,6 +30,7 @@ export class VistainfoComponent {
   sucursal: String = ""; 
   Sucursales: any = []; // Inicializar Sucursales como un array vacío
   message: string = ""; 
+  
 
 
   constructor(private getusu: UsuariosGetService, private session: SessionManagementService, public activatedRoute: ActivatedRoute, private router: Router){
@@ -95,6 +96,8 @@ export class VistainfoComponent {
     // }else if((nochediaflag && hour < Number(this.inicio)) || (!nochediaflag && hour > Number(this.inicio))){
     //   this.message = "No está abierto"; 
     // }else{
+    const dates = new Date();
+const fechaFormateada = dates.toISOString().split('T')[0];
       const pedido = {
         Id_Usuario: this.session.getSessionId(), 
         Id_Cafeteria: this.comida.Id_Cafeteria, 
@@ -103,7 +106,7 @@ export class VistainfoComponent {
         Pagado: "N",
         Tiempo: this.comida.TiempoPrepa,
         Tipo_pago: this.tipoPago,
-        Fecha: date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate()
+        Fecha: fechaFormateada
       }
       const Id_Comida = {
         Pedido: pedido, 
