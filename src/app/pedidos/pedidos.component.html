@@ -16,7 +16,7 @@
                         <div class="fecha"><p>{{pedido.Fecha}}</p></div>
                         @if(pedido.Pagado == "N"){
                             @if(flagencargado){
-                                <div class="recogido1" (click)="pedidoEntregado(pedido.Orden)"><p>Entregado</p></div>
+                                <div class="recogido1" (click)="pedidoEntregado(pedido.Id_Orden)"><p>Entregado</p></div>
                             }@else{
                                 <div class="recogido"><p>No recogido</p></div>
                             }

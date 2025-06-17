@@ -41,7 +41,7 @@ export class UsuariopagComponent {
 
       this.getusu.getusuario(urlAPII, this.user).subscribe((res: any) => {
         this.usuario = JSON.parse(JSON.stringify(res));
-        if(this.usuario.Tipo == "Encargado"){
+        if(this.usuario.Tipo == "E"){
           this.getusu.getusuario(urlAPI, this.user).subscribe((res: any) => {
             this.encargado = JSON.parse(JSON.stringify(res));
             this.flagencargado = true; 

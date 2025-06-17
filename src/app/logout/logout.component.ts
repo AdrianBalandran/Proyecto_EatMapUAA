@@ -107,7 +107,7 @@ export class LogoutComponent {
   // Guardar sesión completa
   this.session.setSession(usuario.Email, usuario.Nombre, usuario.Id_Usuario, token);
 
-  this.router.navigate(['/vistaprod']);
+  this.router.navigate(['/home']);
 }
 
       }, (err: { message: String; }) => { 
