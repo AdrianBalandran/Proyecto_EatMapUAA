@@ -82,7 +82,7 @@ export class LogoutComponent {
         Email: this.registroForm?.get('correo')?.value!, 
         Contrasena: this.registroForm?.get('contra')?.value!,  
         Telefono: this.registroForm?.get('telefono')?.value!,
-        Tipo: "Cliente", 
+        Tipo: "C", 
       }
 
       this.getusu.getusuario(urlAPISend, user).subscribe((res: any) => {
