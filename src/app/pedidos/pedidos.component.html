@@ -15,6 +15,7 @@
                         <div class="precio"><p>${{pedido.Precio}}</p></div>
                         <div class="espera"><p>Espera {{pedido.Tiempo}} min</p></div>
                         <div class="fecha"><p>{{pedido.Fecha}}</p></div>
+                        <div class="numero"><p>Cantidad: {{pedido.Numero}}</p></div>
                         @if(pedido.Pagado == "N"){
                             @if(flagencargado){
                                 <div class="recogido1" (click)="pedidoEntregado(pedido.Id_Orden)"><p>Entregado</p></div>
@@ -65,6 +66,7 @@
                     <div class="precio"><p>${{pedido.Precio}}</p></div>
                     <div class="espera"><p>Espera {{pedido.Tiempo}} min</p></div>
                     <div class="fecha"><p>{{pedido.Fecha}}</p></div>
+                    <div class="numero"><p>Cantidad: {{pedido.Numero}}</p></div>
                     @if(pedido.Pagado == "N"){
                         <div class="recogido"><p>No recogido</p></div>
                     }@else if(pedido.Pagado == "C"){
@@ -77,7 +79,6 @@
                     </div>
                     @if(flagencargado){
                         <div class="nombre"><p>{{pedido.NombreUsuario}}</p></div>
-                        <div class="orden"><p>{{pedido.Id_Orden}}</p></div>
                     }@else{
                         <div class="cafeteria"><p>{{pedido.Cafeteria}}</p></div>
                         <div class="sucursal"><p>{{pedido.Sucursal}}</p></div>

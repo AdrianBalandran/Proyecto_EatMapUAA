@@ -78,7 +78,7 @@ export class PedidosComponent {
           });
         }else{
           this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {
-            this.pedidos = JSON.parse(JSON.stringify(res)); 
+            this.pedidos = JSON.parse(JSON.stringify(res));
             this.tamano = this.pedidos.length; 
             this.NoPagados = this.separarpedidos();
           });
