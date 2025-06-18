@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BusquedaService {
-  private apiUrl = 'http://localhost:3000/buscar'; // Cambia a la URL de tu servidor
+  private apiUrl = 'http://192.168.50.39:3000/buscar'; // Cambia a la URL de tu servidor
 
   constructor(private http: HttpClient) {}
 

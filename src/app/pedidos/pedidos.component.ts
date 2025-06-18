@@ -44,7 +44,7 @@ export class PedidosComponent {
     let orden = {
       Orden: idOrden
     }
-    const urlAPI: string = "http://localhost:3000/pedido/entregado"; 
+    const urlAPI: string = "http://192.168.50.39:3000/pedido/entregado"; 
     this.getusu.postNodeEntregado(urlAPI, orden);
     this.actualizar(); 
   }
@@ -53,7 +53,7 @@ export class PedidosComponent {
     let orden = {
       Orden: idOrden
     }
-    const urlAPI: string = "http://localhost:3000/pedido/cancelado"; 
+    const urlAPI: string = "http://192.168.50.39:3000/pedido/cancelado"; 
     this.getusu.postNodeEntregado(urlAPI, orden);
     this.actualizar(); 
   }
@@ -62,15 +62,15 @@ export class PedidosComponent {
     if(this.session.isAuthenticated()){
       this.auth = true; 
       this.id = {Id_Usuario: this.session.getSessionId()}; 
-      const urlAPII: string = "http://localhost:3000/pedidos"; 
-      const urlAPIII: string = "http://localhost:3000/usuario/get"; 
+      const urlAPII: string = "http://192.168.50.39:3000/pedidos"; 
+      const urlAPIII: string = "http://192.168.50.39:3000/usuario/get"; 
       let user = {Email: this.session.getSession()}; 
       let usuario!: Usuario; 
       this.getusu.getusuario(urlAPIII, user).subscribe((res: any) => {
         usuario = JSON.parse(JSON.stringify(res));
         if(usuario.Tipo == "E"){
           this.flagencargado = true; 
-          const urlAPII: string = "http://localhost:3000/pedidos/getEnc"; 
+          const urlAPII: string = "http://192.168.50.39:3000/pedidos/getEnc"; 
           this.getusu.getusuario(urlAPII, this.id).subscribe((res: any) => {
             this.pedidos = JSON.parse(JSON.stringify(res)); 
             this.tamano = this.pedidos.length; 

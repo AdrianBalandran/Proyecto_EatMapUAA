@@ -9,7 +9,7 @@ export class CafeteriaService {
   constructor(private http: HttpClient) {}
   getCafeteriaInfo(idCafeteria: number): Observable<any> {
     return this.http.post<any>(
-      'http://localhost:3000/cafeteriaid',
+      'http://192.168.50.39:3000/cafeteriaid',
       { Id_Cafeteria: idCafeteria }
     );
   }

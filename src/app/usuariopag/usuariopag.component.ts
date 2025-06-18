@@ -36,8 +36,8 @@ export class UsuariopagComponent {
     if(this.session.isAuthenticated()){
       this.auth = true; 
       this.user = {Email: this.session.getSession()}; 
-      const urlAPII: string = "http://localhost:3000/usuario/get"; 
-      const urlAPI: string = "http://localhost:3000/usuario/getsuyca"; 
+      const urlAPII: string = "http://192.168.50.39:3000/usuario/get"; 
+      const urlAPI: string = "http://192.168.50.39:3000/usuario/getsuyca"; 
       this.getusu.getusuario(urlAPII, this.user).subscribe((res: any) => {
         this.usuario = JSON.parse(JSON.stringify(res));
         if(this.usuario.Tipo == "E"){
