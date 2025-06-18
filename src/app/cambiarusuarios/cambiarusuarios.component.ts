@@ -33,7 +33,7 @@ export class CambiarusuariosComponent {
   constructor(private getusu: UsuariosGetService, private router: Router, private session: SessionManagementService, private titleser: Title){
     titleser.setTitle("EatMapUAA | Administrador"); 
     if(this.session.isAuthenticated()){
-      const urlAPI: string = "http://localhost:3000/usuario/info"; 
+      const urlAPI: string = "http://192.168.50.39:3000/usuario/info"; 
       this.getusu.getusuario(urlAPI, {Id_Usuario: this.session.getSessionId()}).subscribe((res: any) => {
         this.usuarios = JSON.parse(JSON.stringify(res));
         this.nombre = this.usuarios[0].Id_Usuario;
@@ -43,7 +43,7 @@ export class CambiarusuariosComponent {
   }
 
   getCafeterias(){
-    const urlAPI: string = "http://localhost:3000/cafeusu/todos"; 
+    const urlAPI: string = "http://192.168.50.39:3000/cafeusu/todos"; 
     this.getusu.getJSON(urlAPI).subscribe((res: any) => {
       this.cafeterias = JSON.parse(JSON.stringify(res));
       this.findDistinct(); 
@@ -76,7 +76,7 @@ export class CambiarusuariosComponent {
   }
 
   cambiarUsuario(){
-    const urlAPI: string = "http://localhost:3000/usuario/cambiar"; 
+    const urlAPI: string = "http://192.168.50.39:3000/usuario/cambiar"; 
     const data = {
       Id_Usuario: this.nombre, 
       Tipo: this.tipo, 
