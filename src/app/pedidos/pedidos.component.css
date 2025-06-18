@@ -40,7 +40,7 @@ p, .recodigo{
 
 .tarjeta{
     width: 320px;
-    height: 350px;
+    height: 400px;
     position: relative;
     background-color: white;
     border: 4px solid black;
@@ -48,7 +48,7 @@ p, .recodigo{
 }
 
 .tarjetaG{
-    height: 400px;
+    height: 450px;
 }
 
 @media (max-width: 900px) {
@@ -116,7 +116,7 @@ p, .recodigo{
 }
 
 .orden{
-     top: 69px;
+    top: 75px;
     left: 140px;
     width: 160px;
     height: 30px;
@@ -126,7 +126,7 @@ p, .recodigo{
 }
 
 .precio{
-    top: 90px;
+    top: 95px;
     left: 140px;
     width: 160px;
     height: 30px;
@@ -150,8 +150,22 @@ p, .recodigo{
     position: absolute;
     /* background-color: lawngreen; */
 }
-.recogido1{
+.numero{
     top: 175px;
+    left: 100px;
+    width: 110px;
+    height: 30px;
+    position: absolute;
+    border-radius: 10px;
+    background-color: #FF4362;
+    color: white; 
+}
+.numero p{
+    width: 100%;
+    height: 100%;
+}
+.recogido1{
+    top: 215px;
     left: 20px;
     width: 280px;
     height: 30px;
@@ -174,7 +188,7 @@ p, .recodigo{
 }
 
 .cancelado1{
-    top: 215px;
+    top: 255px;
     left: 20px;
     width: 280px;
     height: 30px;
@@ -189,7 +203,7 @@ p, .recodigo{
 
 
 .recogido{
-    top: 175px;
+    top: 215px;
     left: 20px;
     width: 280px;
     height: 30px;
@@ -206,7 +220,7 @@ p, .recodigo{
 }
 
 .norecogido{
-    top: 175px;
+    top: 215px;
     left: 20px;
     width: 280px;
     height: 30px;
@@ -225,7 +239,7 @@ p, .recodigo{
 }
 
 .cancelado{
-    top: 175px;
+    top: 215px;
     left: 20px;
     width: 280px;
     height: 30px;
